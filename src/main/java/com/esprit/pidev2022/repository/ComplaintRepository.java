@@ -1,4 +1,7 @@
 package com.esprit.pidev2022.repository;
 
-public interface ComplaintRepository {
+import com.esprit.pidev2022.entities.Complaint;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ComplaintRepository extends CrudRepository<Complaint, Long> {
 }
