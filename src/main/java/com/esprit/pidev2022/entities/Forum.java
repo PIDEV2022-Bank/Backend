@@ -3,11 +3,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,6 +23,8 @@ public class Forum implements Serializable {
      Long id;
      String title;
      int idUser;
+    @OneToMany(mappedBy = "forum")
+    private List<Post> Posts = new ArrayList<>();
 
 }
 
