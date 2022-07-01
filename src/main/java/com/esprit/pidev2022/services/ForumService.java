@@ -1,16 +1,15 @@
 package com.esprit.pidev2022.services;
 
-
-import com.esprit.pidev2022.Exception.ForumNotFoundException;
-import com.esprit.pidev2022.repository.*;
-
+import com.esprit.ib.Exception.ForumNotFoundException;
 import com.esprit.pidev2022.entities.Forum;
-
+import com.esprit.pidev2022.repository.ForumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
+import java.util.Optional.*;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -31,14 +30,14 @@ public class ForumService {
     {
         forumRepository.deleteForumById(id);
     }
-    public Forum findForumById(Long id)
+   public Forum findForumById(Long id)
     {
         return forumRepository.findForumById(id)
                .orElseThrow(()-> new ForumNotFoundException("Forum by id"+id+"not found"));
 
     }
 
-    public List<Forum> findAllForum()
+    public List<Forum > findAllForum()
     {return (List<Forum>) forumRepository.findAll();
     }
 }
