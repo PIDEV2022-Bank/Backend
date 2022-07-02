@@ -111,6 +111,14 @@ public class User {
         this.roles = roles;
     }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     @OneToMany(mappedBy = "user")
     public List<Complaint> complaints;
 
@@ -119,4 +127,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     public List<product> products;
+
+    @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)
+    public List<Account> accounts;
 }
