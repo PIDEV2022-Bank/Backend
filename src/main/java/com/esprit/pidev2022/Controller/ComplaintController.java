@@ -3,6 +3,7 @@ package com.esprit.pidev2022.Controller;
 import com.esprit.pidev2022.entities.Complaint;
 import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.Request;
+import com.esprit.pidev2022.entities.User;
 import com.esprit.pidev2022.services.ComplaintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,12 @@ public class ComplaintController {
         return new ResponseEntity<>(complaint, HttpStatus.OK);
     }
     @PostMapping("/add")
+    @ResponseBody
     public ResponseEntity<Complaint> addComplaint(@RequestBody Complaint complaint) {
+        User user = new User();
+        user.setIdUser(1);
+        user.setName("FARES");
+        complaint.setUser(user);
          complaintService.addComplaint(complaint);
         return new ResponseEntity<>(complaint, HttpStatus.CREATED);
     }

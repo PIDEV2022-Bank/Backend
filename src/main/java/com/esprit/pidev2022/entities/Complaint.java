@@ -19,5 +19,6 @@ private String Subject;
 private String Message;
 private String Status;
 @ManyToOne
+@JoinColumn(name = "idUser" ,referencedColumnName = "idUser")
 private User user;
 }
