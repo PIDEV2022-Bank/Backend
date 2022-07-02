@@ -1,14 +1,19 @@
 package com.esprit.pidev2022.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+@Getter
+@Setter
 @Entity
-@DiscriminatorValue("SEV")
+@DiscriminatorValue("SA")
 public class SavingAccount extends Account {
-	
+
 	private float interestRate;
 
 	public SavingAccount() {
@@ -16,22 +21,11 @@ public class SavingAccount extends Account {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SavingAccount(String accountCode, Date creationDate, double balance, Client client,
-			float interestRate) {
-		super(accountCode, creationDate, balance, client);
+	public SavingAccount(String accountNumber, Date creationDate, BigDecimal balance, User client, boolean status,
+						 float interestRate) {
+		super(accountNumber, creationDate, balance,  client, status);
 		this.interestRate = interestRate;
 	}
 
-	public float getInterestRate() {
-		return interestRate;
-	}
-
-	public void setInterestRate(float interestRate) {
-		this.interestRate = interestRate;
-	}
-	
-	
-	
-	
 
 }

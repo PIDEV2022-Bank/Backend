@@ -1,11 +1,9 @@
 package com.esprit.pidev2022.entities;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,8 +17,9 @@ import java.util.Date;
 public class CommentChild implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   Long id;
+    Long id;
     Date dateCreated;
     String contained;
-    int idComment;
+
+
 }

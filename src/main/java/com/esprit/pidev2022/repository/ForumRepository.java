@@ -1,6 +1,6 @@
 package com.esprit.pidev2022.repository;
 
-
+import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.Forum;
 import org.springframework.data.repository.CrudRepository;
 

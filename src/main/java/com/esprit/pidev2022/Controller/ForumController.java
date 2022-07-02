@@ -1,12 +1,17 @@
 package com.esprit.pidev2022.Controller;
+
 import com.esprit.pidev2022.entities.Forum;
+import com.esprit.pidev2022.repository.ForumRepository;
 import com.esprit.pidev2022.services.ForumService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.sql.ClientInfoStatus;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Transactional

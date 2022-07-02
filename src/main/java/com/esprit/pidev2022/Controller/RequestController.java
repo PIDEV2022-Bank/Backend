@@ -1,6 +1,5 @@
 package com.esprit.pidev2022.Controller;
 
-import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.Request;
 import com.esprit.pidev2022.entities.User;
 import com.esprit.pidev2022.services.RequestService;
