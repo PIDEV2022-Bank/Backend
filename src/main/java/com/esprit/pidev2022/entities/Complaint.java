@@ -1,9 +1,16 @@
 
 package com.esprit.pidev2022.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Complaint {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
