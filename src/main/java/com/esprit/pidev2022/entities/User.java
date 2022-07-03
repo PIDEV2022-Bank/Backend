@@ -11,36 +11,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
-@Entity
-@Table(name="users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "name")
-        })
+/*
+//@Entity
+//@Table(name="users",
+  //      uniqueConstraints = {
+   //             @UniqueConstraint(columnNames = "name")
+   //     })
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
-    @NotBlank
-    @Size(min = 3, max = 20)
+   // @NotBlank
+  //  @Size(min = 3, max = 20)
     private String name;
-    @NotBlank
-    @Size(min = 3, max = 20)
+   // @NotBlank
+   // @Size(min = 3, max = 20)
     private String lastName;
-    @NotBlank
-    @Size(max = 50)
-    @Email
+ //   @NotBlank
+  //  @Size(max = 50)
+  //  @Email
     private String email;
-    @NotBlank
-    @Size(max=120)
+  //  @NotBlank
+   // @Size(max=120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    //@ManyToMany(fetch = FetchType.EAGER)
+   // @JoinTable(name = "user_roles",
+      //      joinColumns = @JoinColumn(name="user_id"),
+     //       inverseJoinColumns = @JoinColumn(name = "role_id")
+   // )
+  //  private Set<Role> roles = new HashSet<>();
 
     //private Forum forum;
 
@@ -54,7 +54,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+      //  this.roles = roles;
     }
 
     public User(String name, String email, String password) {
@@ -103,13 +103,13 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+  //  public Set<Role> getRoles() {
+   //     return roles;
+  ///  }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+   // public void setRoles(Set<Role> roles) {
+    //    this.roles = roles;
+   // }
 
     public List<Account> getAccounts() {
         return accounts;
@@ -131,3 +131,4 @@ public class User {
     @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)
     public List<Account> accounts;
 }
+*/

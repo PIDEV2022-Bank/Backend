@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.entities;
 
+import com.esprit.pidev2022.security.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
