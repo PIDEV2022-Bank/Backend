@@ -2,7 +2,7 @@ package com.esprit.pidev2022.services;
 
 
 import com.esprit.pidev2022.entities.Complaint;
-import com.esprit.pidev2022.entities.User;
+import com.esprit.pidev2022.security.model.User;
 import com.esprit.pidev2022.repository.ComplaintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class ComplaintService {
     }
 
     public List<Complaint> findComplaintByUser(User user) {
-        return (List<Complaint>) complaintRepository.findById(Long.valueOf(user.getIdUser())).get();
+        return (List<Complaint>) complaintRepository.findById(Long.valueOf(user.getId())).get();
     }
     public Complaint findComplaintById(int ComplaintId){
         return  complaintRepository.findById(Long.valueOf(ComplaintId)).get();
