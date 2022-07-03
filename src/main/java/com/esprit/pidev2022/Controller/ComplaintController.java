@@ -34,19 +34,19 @@ public class ComplaintController {
     public List<Complaint>getAllComplaints(){
         return  complaintService.findAllComplaints();}
     @GetMapping("/{complaintId}")
-    public ResponseEntity<Complaint> getComplaintById(@PathVariable("complaintId") int complaintId){
+    public ResponseEntity<Complaint> getComplaintById(@PathVariable("complaintId") Long complaintId){
         Complaint complaint=complaintService.findComplaintById(complaintId);
         return new ResponseEntity<>(complaint , HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{complaintID}")
-    public ResponseEntity<?> deleteComplaint(@PathVariable("complaintID") int complaintID) {
+    public ResponseEntity<?> deleteComplaint(@PathVariable("complaintID") Long complaintID) {
     Complaint complaint= complaintService.findComplaintById(complaintID);
         complaintService.deleteComplaint(complaint);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/updateStatusToDone/{complaintID}")
-    public ResponseEntity<Complaint> updateComplaintStatus(@RequestBody int complaintID) {
+    public ResponseEntity<Complaint> updateComplaintStatus(@RequestBody Long complaintID) {
         Complaint complaint= complaintService.findComplaintById(complaintID);
         complaintService.updateComplaintStatusToDone(complaint);
         return new ResponseEntity<>(complaint, HttpStatus.OK);

@@ -26,11 +26,11 @@ public class ComplaintService {
         return (List<Complaint>) complaintRepository.findAll();
     }
 
-    public List<Complaint> findComplaintByUser(User user) {
-        return (List<Complaint>) complaintRepository.findById(Long.valueOf(user.getIdUser())).get();
-    }
-    public Complaint findComplaintById(int ComplaintId){
-        return  complaintRepository.findById(Long.valueOf(ComplaintId)).get();
+//    public List<Complaint> findComplaintByUser(User user) {
+//        return (List<Complaint>) complaintRepository.findById(Long.valueOf(user.getIdUser())).get();
+//    }
+    public Complaint findComplaintById(Long ComplaintId){
+        return  complaintRepository.findById(ComplaintId).get();
     }
     public void deleteComplaint(Complaint complaint){
         complaintRepository.delete(complaint);

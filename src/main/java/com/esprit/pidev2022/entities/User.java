@@ -3,6 +3,8 @@ package com.esprit.pidev2022.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -43,7 +45,9 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     //private Forum forum;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+    public List<Complaint> complaints;
 
     public User() {
     }
@@ -119,8 +123,7 @@ public class User {
         this.accounts = accounts;
     }
 
-    @OneToMany(mappedBy = "user")
-    public List<Complaint> complaints;
+
 
     @OneToMany(mappedBy = "user")
     public List<Request> requests;
