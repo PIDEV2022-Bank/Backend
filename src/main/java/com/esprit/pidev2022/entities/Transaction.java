@@ -1,30 +1,25 @@
 package com.esprit.pidev2022.entities;
 
-import java.sql.Timestamp;
-
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import lombok.Getter;
+import lombok.Setter;
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Transction_Type",discriminatorType = DiscriminatorType.STRING,length=2)  
-public class Transaction {
-	@Id @GeneratedValue
+@DiscriminatorColumn(name="Trans_Type",discriminatorType = DiscriminatorType.STRING,length=2)
+public class Transaction implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long TransactionId;
-	private Timestamp transactionDate;
+	private Date transactionDate;
 	private double amount;
 	@ManyToOne
-	@JoinColumn(name="accountcode")
+	@JoinColumn(name="account_Code")
 	private Account account;
-	@ManyToOne
-	private Employee charge;
+	private String description;
 
 	public Transaction() {
 		super();
@@ -32,59 +27,13 @@ public class Transaction {
 	}
 
 
-	public Transaction(Timestamp transactionDate, double amount, Account account) {
+	public Transaction(Date transactionDate, double amount, Account account,String description) {
 		super();
 		this.transactionDate = transactionDate;
 		this.amount = amount;
 		this.account = account;
-	}
-	
-	
-	
-	// getter and setter
-
-
-	public Long getTransactionId() {
-		return TransactionId;
+		this.description = description;
 	}
 
-
-	public void setTransactionId(Long transactionId) {
-		TransactionId = transactionId;
-	}
-
-
-	public Timestamp getTransactionDate() {
-		return transactionDate;
-	}
-
-
-	public void setTransactionDate(Timestamp transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-
-
-	public double getAmount() {
-		return amount;
-	}
-
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-
-	public Account getAccount() {
-		return account;
-	}
-
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	
-	
-	
 
 }

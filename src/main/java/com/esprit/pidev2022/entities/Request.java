@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.entities;
 
+import com.esprit.pidev2022.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +24,7 @@ public class Request implements Serializable {
     private String state;
     private String message;
 
-    @ManyToOne
-    private User user;
+   @ManyToOne
+  private User user;
 
 }

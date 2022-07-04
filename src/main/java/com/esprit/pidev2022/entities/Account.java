@@ -1,108 +1,53 @@
 
- package com.esprit.pidev2022.entities;
+package com.esprit.pidev2022.entities;
+import com.esprit.pidev2022.security.model.User;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
-
-
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Account_Type",discriminatorType = DiscriminatorType.STRING,length=2)
-public  class Account {
-	
-	
+@DiscriminatorColumn(name="Acc_Typ",discriminatorType = DiscriminatorType.STRING,length=2)
+public  class Account implements Serializable {
+
+
 	@Id
-	private String accountCode;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String accountNumber;
 	private Date creationDate;
-	private double balance;
+	private BigDecimal balance;
+	boolean status;
 	@ManyToOne
 	@JoinColumn (name="clientCode")
-	private Client client;
+	private User client;
 
-	@OneToMany(mappedBy="account")
+	@OneToMany(mappedBy="account" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List <Transaction> transactions;
-	
-	
+
+
 	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Account(String accountCode, Date creationDate, double balance, Client client) {
+	public Account(String accountNumber, Date creationDate, BigDecimal balance, User client, boolean status) {
 		super();
-		this.accountCode = accountCode;
+		this.accountNumber = accountNumber;
 		this.creationDate = creationDate;
 		this.balance = balance;
 		this.client = client;
-
+		this.status = status;
 	}
 
-
-	// getter and Setter
-	public String getAccountCode() {
-		return accountCode;
-	}
-
-
-	public void setAccountCode(String accountCode) {
-		this.accountCode = accountCode;
-	}
-
-
-	public Date getCreationDate() {
-		return creationDate;
-	}
-
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
-
-	public double getBalance() {
-		return balance;
-	}
-
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-
-
-	public Client getClient() {
-		return client;
-	}
-
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-
-
-
-
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
-
-
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-	
-	
-	
 
 }
