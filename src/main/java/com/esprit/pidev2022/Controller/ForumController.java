@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.sql.ClientInfoStatus;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,8 @@ public class ForumController {
 
     @PostMapping("/add")
     public ResponseEntity<Forum> addForum(@RequestBody Forum forum) {
+        if (forum.getDateCreated()==null)
+        {forum.setDateCreated(new Date());}
         Forum newForum = forumService.addForum(forum);
         return new ResponseEntity<>(forum, HttpStatus.CREATED);
     }

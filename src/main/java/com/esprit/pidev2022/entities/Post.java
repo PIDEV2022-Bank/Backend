@@ -21,15 +21,19 @@ import java.util.List;
 public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   Long id;
+    Long id;
+    String title;
     Date dateCreated;
     String contained ;
 
-    int idUser;
+
+
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "idForum")
+    @JoinColumn(name = "idForum",insertable = false, updatable = false)
     Forum forum;
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
+
 }
