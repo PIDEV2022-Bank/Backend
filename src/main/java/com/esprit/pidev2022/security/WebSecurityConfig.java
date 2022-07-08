@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**");
+        web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**","/h2/**","/h2/login**");
     }
 
     @Override
@@ -69,18 +69,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(bean_auth_exception).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+                .authorizeRequests().antMatchers("/api/auth/**","http://localhost:8082/**").permitAll()
                 // .antMatchers("/api/v1/**").permitAll()
-                .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
+               /* .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
                 .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
-                .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")
+                .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")*/
 
-                // .antMatchers("/api/v1/**").permitAll()
-                .antMatchers("/**").permitAll()
+               .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
+
 
         http.addFilterBefore(create_filter_jwt(),
                 UsernamePasswordAuthenticationFilter.class);
     }
+
 
 }

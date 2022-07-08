@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Complaint {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-private int idComplaint;
+private Long idComplaint;
 private String Subject;
 private String Message;
 private String Status;
