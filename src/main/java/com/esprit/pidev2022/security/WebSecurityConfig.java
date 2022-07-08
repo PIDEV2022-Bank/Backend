@@ -76,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")
 
                 // .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(create_filter_jwt(),
