@@ -22,8 +22,8 @@ public class Request implements Serializable {
     private Date date;
     private String state;
     private String message;
-
-    @ManyToOne
+    private String type;
+   @ManyToOne 
     private User user;
 
 }

@@ -27,5 +27,11 @@ public class RequestService {
     public List<Request> findAllRequestByUser(User u){
         return (List<Request>) requestRepo.findById(Long.valueOf(u.getIdUser())).get();
     }
+public Request updateRequest(Request r){
+        return  requestRepo.save(r);
+}
+    public void deleteRequest(Long id) {
+        requestRepo.deleteById(id);
 
+    }
 }
