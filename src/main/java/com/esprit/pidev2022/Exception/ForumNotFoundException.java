@@ -1,4 +1,4 @@
-package com.esprit.pidev2022.Exception;
+package com.esprit.ib.Exception;
 
 public class ForumNotFoundException extends RuntimeException{
     public ForumNotFoundException(String message) {

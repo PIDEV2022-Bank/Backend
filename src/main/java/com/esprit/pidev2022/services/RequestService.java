@@ -2,7 +2,7 @@ package com.esprit.pidev2022.services;
 
 
 import com.esprit.pidev2022.entities.Request;
-import com.esprit.pidev2022.entities.User;
+import com.esprit.pidev2022.security.model.User;
 import com.esprit.pidev2022.repository.RequestRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class RequestService {
     }
 
     public List<Request> findAllRequestByUser(User u){
-        return (List<Request>) requestRepo.findById(Long.valueOf(u.getIdUser())).get();
+        return (List<Request>) requestRepo.findById(Long.valueOf(u.getId())).get();
     }
 public Request updateRequest(Request r){
         return  requestRepo.save(r);

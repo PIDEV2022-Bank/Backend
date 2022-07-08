@@ -6,18 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
+/*
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name="roles")
+//@Entity
+//@Table(name="roles")
 public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 25)
+  //  @Enumerated(EnumType.STRING)
+  //  @Column(length = 25)
     private ERole name;
 }
+*/

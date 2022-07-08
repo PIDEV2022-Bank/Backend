@@ -3,7 +3,7 @@ package com.esprit.pidev2022.Controller;
 import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.MyConstants;
 import com.esprit.pidev2022.entities.Request;
-import com.esprit.pidev2022.entities.User;
+import com.esprit.pidev2022.security.model.User;
 import com.esprit.pidev2022.services.RequestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +59,7 @@ public class RequestController {
     @GetMapping("/requestsByUser/{id}")
     public ResponseEntity<List<Request>> getResquestByUser(@PathVariable("id") int id){
         User u=new User();
-        u.setIdUser(id);
+        u.setId(id);
         List<Request> request=requestServ.findAllRequestByUser(u);
         return new ResponseEntity<>(request,HttpStatus.OK);
     }

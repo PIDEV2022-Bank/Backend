@@ -1,14 +1,14 @@
 package com.esprit.pidev2022.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,7 +24,12 @@ public class Post implements Serializable {
    Long id;
     Date dateCreated;
     String contained ;
-    String urlImage;
+
     int idUser;
-    int idForum;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "idForum")
+    Forum forum;
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments = new ArrayList<>();
 }
