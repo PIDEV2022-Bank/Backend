@@ -71,9 +71,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 // .antMatchers("/api/v1/**").permitAll()
-                .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
-                .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
-                .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")
+              //  .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
+               // .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
+               // .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")
 
                 // .antMatchers("/api/v1/**").permitAll()
                 .anyRequest().authenticated();

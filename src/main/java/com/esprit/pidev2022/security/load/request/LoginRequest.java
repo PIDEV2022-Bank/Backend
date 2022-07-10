@@ -8,6 +8,8 @@ public class LoginRequest {
     @NotBlank
     private String password;
 
+
+
     public LoginRequest(){
 
     }
@@ -27,4 +29,6 @@ public class LoginRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

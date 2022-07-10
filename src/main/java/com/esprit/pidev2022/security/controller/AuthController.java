@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.security.controller;
 
+import com.esprit.pidev2022.security.ActiveUserStore;
 import com.esprit.pidev2022.security.load.request.LoginRequest;
 import com.esprit.pidev2022.security.load.request.SignupRequest;
 import com.esprit.pidev2022.security.load.response.JwtResponse;
@@ -20,6 +21,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +52,9 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder; // le bean de cryptage
 
+   // @Autowired
+   // ActiveUserStore activeUserStore;
+
     @PostMapping("/signup")
     public ResponseEntity<?> register_user(@Valid @RequestBody SignupRequest signupRequest) {
 
@@ -76,6 +81,7 @@ public class AuthController {
                 signupRequest.getUsername(),
                 signupRequest.getEmail(),
                 encoder.encode(signupRequest.getPassword()));
+        user.setState(false);
 
         Set<String> subroles = signupRequest.getRole(); // récupérer les roles (String) as input
 
@@ -97,7 +103,7 @@ public class AuthController {
                                 Role roleadmin = roleRepository.findByName(ERole.ROLE_ADMIN)
                                         .orElseThrow(() -> new RuntimeException("Error : role is not found"));
                                 roles.add(roleadmin);
-                            case "secretaire":
+                            case "banker":
                                 Role rolesec = roleRepository.findByName(ERole.ROLE_BANKER)
                                         .orElseThrow(() -> new RuntimeException("Error : role is not found"));
                                 roles.add(rolesec);
@@ -120,7 +126,7 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> auth_user(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> auth_user(@Valid @RequestBody LoginRequest loginRequest,Locale locale, Model model) {
 
         // pour l'authentification (vérifier l'existance de l'utilisateur)
 
@@ -140,13 +146,21 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(
-                new JwtResponse(
+      //  if(userdetails.isState()==false){
+      //     return ResponseEntity.ok(new MessageResponse("Account not activated yet, please contact us on... !!!"));
+      //  }
+        //if(true){
+        //    model.addAttribute("users", activeUserStore.getUsers());
+         //   return ResponseEntity.ok(new MessageResponse("users"+activeUserStore.getUsers().isEmpty()));
+     //   }
+
+       return ResponseEntity.ok(
+              new JwtResponse(
                         jwt,
-                        userdetails.getId(),
-                        userdetails.getUsername(),
+                       userdetails.getId(),
+                       userdetails.getUsername(),
                         userdetails.getEmail(),
-                        roles));
+                       roles));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -163,3 +177,9 @@ public class AuthController {
     }
 
 }
+
+  //  public String getLoggedUsers(Locale locale, Model model) {
+    //    model.addAttribute("users", activeUserStore.getUsers());
+        //return activeUserStore.getUsers();
+     //   return "users";
+   // }
