@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 
+
 @Service
 public class TransactionServiceImpl implements TransactionService{
 
@@ -21,21 +22,24 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired
     private TransactionRepository transactionRepo;
 
+    @Autowired AccountService accountService;
+
 
     @Override
     public Account getAccount(String accountNumber) {
 
         Account account=accountRepo.findByAccountNumber(accountNumber);
         if (account ==null) throw new AccountNotFoundException("compte intouvable");
-        return null;
+        return account;
     }
 
     @Override
-    public void deposit (String accountNumber,double amount,String description) throws AccountNotFoundException {
+    public void deposit (String accountNumber, double amount, String description) throws AccountNotFoundException {
         Account account = getAccount(accountNumber);
         DepositTransaction deposit = new DepositTransaction(new Date(),amount,account,
                 description);
         transactionRepo.save(deposit);
+        //    account.getTransactions().add(deposit);
         account.setBalance(account.getBalance().add(new BigDecimal(amount)));
         accountRepo.save(account);
 
@@ -61,12 +65,17 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     public void transfer(String accountSource, String accountDestination, double amount) throws AccountNotFoundException, BalanceNotEnoughException {
         withdrawal ( accountSource, amount,"transert vers "+accountDestination);
-        deposit ( accountDestination, amount,"transert du accountSource");
+        deposit ( accountDestination, amount,"transert du "+accountSource );
     }
 
 
     @Override
-    public List<Transaction> findTransactionList(String email) {
-        return null;
+    public List<Transaction> findAccountTransaction(Long accountId){
+        List<Transaction> transactions = transactionRepo.findByAccountId(accountId);
+        return transactions;
     }
+
+
+
+
 }

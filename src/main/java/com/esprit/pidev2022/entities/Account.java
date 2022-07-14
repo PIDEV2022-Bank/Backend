@@ -1,6 +1,7 @@
 
 package com.esprit.pidev2022.entities;
 import com.esprit.pidev2022.security.model.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +30,7 @@ public  class Account implements Serializable {
 	@ManyToOne
 	@JoinColumn (name="clientCode")
 	private User client;
-
+	@JsonManagedReference
 	@OneToMany(mappedBy="account" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List <Transaction> transactions;
 
@@ -40,7 +41,7 @@ public  class Account implements Serializable {
 	}
 
 
-	public Account(String accountNumber, Date creationDate, BigDecimal balance, User client, boolean status) {
+	public Account(String accountNumber, Date creationDate, BigDecimal balance, User client,boolean status) {
 		super();
 		this.accountNumber = accountNumber;
 		this.creationDate = creationDate;
