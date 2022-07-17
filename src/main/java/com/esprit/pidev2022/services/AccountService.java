@@ -17,6 +17,7 @@ public interface AccountService {
     List<Account> findAllAccount();
 
     Account findAccountByID (Long idCompte);
+    List<Account> findClientAccounts(Long accountId);
 
 
 
