@@ -4,7 +4,7 @@ import { AccountComponent } from './account/account.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
 
 const routes: Routes = [
-  { path: '', component: AccountComponent},
+  { path: '\admin', component: AccountComponent},
   {
     path: 'transactions/accounts/:id/operations',
     component: TransactionComponent, 
