@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
 import { Account } from "../models/account";
+import { Transfer } from "../models/transfer";
 import { Transaction } from "../models/transaction";
 
 const apiJavaUrl = "http://localhost:8082";
@@ -17,7 +18,7 @@ users: any = [];
 userSubject = new Subject<User[]>();
 accounts:any=[];
 accountSubject = new Subject<Account[]>();
-idAccount : number | undefined
+idAccount : number 
   console: any;
 constructor(private http: HttpClient) {}
   emitAccounts(){
@@ -27,7 +28,11 @@ constructor(private http: HttpClient) {}
   emitUsers() {
     this.userSubject.next(this.users.slice());
   }
-
+  
+  addAccounts(account: any) {
+    this.accounts.unshift(account);
+    this.emitAccounts();
+  }
 
 
 getMyAccounts() {
@@ -45,5 +50,17 @@ getMyAccounts() {
   getMyTransactionsAccount(id:number): Observable<any> {
     return this.http.get<Transaction>(apiJavaUrl + "/transactions/accounts/" + id + "/operations");
   }
+
+  addTransfer(transfer:Transfer): Observable<any> {
+   return this.http.post<Transfer>(
+      apiJavaUrl + "/transactions/accounts/transfer",
+      transfer,
+      { observe: "response" }
+    )
+      .pipe(
+        tap((_) => this.console.log("fetched Projects"))
+      );
+  }
+
 
 }

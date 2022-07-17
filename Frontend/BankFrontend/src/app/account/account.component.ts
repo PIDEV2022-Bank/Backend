@@ -3,7 +3,9 @@ import { Account } from '../core/models/account';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/core/service/account.service';
 import { GridOptions } from 'ag-grid-community';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ShowDetailsComponent } from '../user/show-details/show-details.component';
+import { AddTransactionComponent } from '../add-transaction/add-transaction.component';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -20,24 +22,24 @@ export class AccountComponent implements OnInit {
   domLayout = "autoHeight";
   frameworkComponents = { showDetailsComponent: ShowDetailsComponent }
   columnDefs = [
-    { headerName: 'NumeroCompte', field: 'accountNumber', sortable: true, filter: true, width: 300 },
-    { headerName: 'solde', field: 'balance', sortable: true, width: 300 },
+    { headerName: 'Numero Compte', field: 'accountNumber', sortable: true, filter: true, width: 300 },
+    { headerName: 'solde', field: 'balance', sortable: true, width: 200 },
     {
-      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width: 260,
+      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width: 200,
       cellRenderer: (data: { value: string | number | Date; }) => {
         return data.value ? (new Date(data.value)).toLocaleDateString('fr-FR') : '';
       }
     },
-  
+    { headerName: 'Client', field: 'client', sortable: true, width: 200 },
     {
-      headerName: 'Action', sortable: true, filter: true, maxWidth: 250,
+      headerName: 'Historique Transaction', sortable: true, filter: true, maxWidth: 200,
       cellRenderer: 'showDetailsComponent',
       colId: 'params',
     },
 
   ];
   
-  constructor(public accountService: AccountService,) {this.noRowsTemplate =
+  constructor(public accountService: AccountService, private modalService: NgbModal) {this.noRowsTemplate =
     `<span style="color: #999;">Aucun projet ajouté</span>`;
   this.loadingTemplate =
     `Chargement en cours`;
@@ -64,5 +66,14 @@ export class AccountComponent implements OnInit {
     });
   }
 
+
+ 
+  openTransactionModal() {
+    const ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(AddTransactionComponent, ngbModalOptions);
+  }
 
 }

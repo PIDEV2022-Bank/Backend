@@ -1,1 +1,49 @@
-<p>add-transaction works!</p>
+
+  <div>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Virement bancaire</h5>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="TransactionForm" (ngSubmit)="onFormSubmit()"  >
+
+        <div class="form-group">
+          <label>Compte à débiter </label><span class="requir">*</span>
+          <input type="text" class="form-control" placeholder="Entrer le num compte"
+          formControlName="accountSource"  [ngClass]="{ 'is-invalid': submitted && f.accountSource.errors }"/>
+          <div *ngIf="submitted && f.accountSource.errors" class="invalid-feedback">
+              <div *ngIf="f.accountSource.errors.required">Numéro de compte est obligatoire</div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+            <label>Compte à créditer</label><span class="requir">*</span>
+            <input type="text" class="form-control" placeholder="Entrer le num compte"
+            formControlName="accountDestination"  [ngClass]="{ 'is-invalid': submitted && f.accountDestination.errors }"/>
+            <div *ngIf="submitted && f.accountDestination.errors" class="invalid-feedback">
+                <div *ngIf="f.accountDestination.errors.required">Numéro de compte est obligatoire</div>
+            </div>
+        </div>
+      
+        <div class="form-group">
+            <label>Montant</label><span class="requir">*</span>
+            <input type="text" class="form-control" placeholder="Entrer le montant"
+            formControlName="amount"  [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"/>
+            <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                <div *ngIf="f.amount.errors.required">Montant est obligatoire</div>
+            </div>
+        </div>
+
+        <div class="row btnPosition">
+          <div class="update ml-auto mr-auto btnPosition">
+             <button type="submit" class="btn  btn-light">Enregistrer</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    </div>
+

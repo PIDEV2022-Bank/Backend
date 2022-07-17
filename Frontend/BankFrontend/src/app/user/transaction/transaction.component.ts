@@ -28,14 +28,15 @@ export class TransactionComponent implements OnInit  {
 
   domLayout = "autoHeight";
   columnDefs = [
-    { headerName: 'transactionId', field: 'transactionId', sortable: true, filter: true, width: 300 },
+    { headerName: 'Réference Transaction', field: 'transactionId', sortable: true, filter: true, width: 300 },
     { headerName: 'Montant', field: 'amount', sortable: true, width: 300 },
     {
-      headerName: 'Date Operation', field: 'transactionDate', sortable: true, filter: true, width: 260,
+      headerName: 'Date Opération', field: 'transactionDate', sortable: true, filter: true, width: 260,
       cellRenderer: (data: { value: string | number | Date; }) => {
         return data.value ? (new Date(data.value)).toLocaleDateString('fr-FR') : '';
       }
     },
+    { headerName: 'Description', field: 'description', sortable: true, width: 300 },
 
   ];
   
@@ -57,7 +58,6 @@ export class TransactionComponent implements OnInit  {
       (transaction) => {
         if (transaction !== null) {
             this.rowData = transaction;
-          
         }
       },
       (err) => {
