@@ -18,7 +18,7 @@ import java.util.Date;
 public class Request implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int idRequest;
+    private Long idRequest;
     private String name;
     private Date date;
     private String state;
