@@ -11,6 +11,7 @@ import { TransactionComponent } from './user/transaction/transaction.component';
 import { ShowDetailsComponent } from './user/show-details/show-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
     AppRoutingModule,
     AgGridModule,
     HttpClientModule,
-    
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

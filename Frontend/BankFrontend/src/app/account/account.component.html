@@ -1,11 +1,11 @@
 
 <div class="interface-body">
 
-    <h3 class="page-title">Mes projets</h3>
+    <h3 class="page-title">Les comptes</h3>
 
    <div id="options" >
-      <button  class="btn"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un projet"><em class="fa fa-plus"></em></button>
-      <input type="text" id="filter-text-box"  placeholder="Filter..." />
+      <button  class="btn" (click)="openTransactionModal()"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un projet"><em class="fa fa-plus"></em></button>
+      <input type="text" id="filter-text-box"  placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
     </div>
 
     
