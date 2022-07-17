@@ -62,5 +62,27 @@ getMyAccounts() {
       );
   }
 
+  addDepot(transfer:Transfer): Observable<any> {
+    return this.http.post<Transfer>(
+       apiJavaUrl + "/transactions/accounts/depot",
+       transfer,
+       { observe: "response" }
+     )
+       .pipe(
+         tap((_) => this.console.log("fetched Projects"))
+       );
+   }
+
+
+   addretrait(transfer:Transfer): Observable<any> {
+    return this.http.post<Transfer>(
+       apiJavaUrl + "/transactions/accounts/retrait",
+       transfer,
+       { observe: "response" }
+     )
+       .pipe(
+         tap((_) => this.console.log("fetched Projects"))
+       );
+   }
 
 }

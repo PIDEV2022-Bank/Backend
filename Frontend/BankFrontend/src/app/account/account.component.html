@@ -4,7 +4,10 @@
     <h3 class="page-title">Les comptes</h3>
 
    <div id="options" >
-      <button  class="btn" (click)="openTransactionModal()"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un projet"><em class="fa fa-plus"></em></button>
+
+      <button  type="button" class="btn" (click)="openDepotModal()"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un depot"><em class="fas fa-money-bill-alt fa-2x" aria-hidden="false"></em></button>
+      <button type="button"  class="btn" (click)="openWithDrawalModal()"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un retrait"><em class="fa fa-credit-card fa-2x"></em></button>
+      <button type="button"  class="btn" (click)="openTransactionModal()"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" title="Ajouter un transfer"><em class="fa fa-credit-card fa-2x" ></em></button>
       <input type="text" id="filter-text-box"  placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
     </div>
 
