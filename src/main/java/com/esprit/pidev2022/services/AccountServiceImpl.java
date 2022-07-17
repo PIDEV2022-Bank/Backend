@@ -2,7 +2,6 @@ package com.esprit.pidev2022.services;
 
 
 import com.esprit.pidev2022.Exception.AccountNotFoundException;
-import com.esprit.pidev2022.Exception.AppointmentNotFoundException;
 import com.esprit.pidev2022.entities.*;
 import com.esprit.pidev2022.repository.AccountRepository;
 import com.esprit.pidev2022.repository.TransactionRepository;
@@ -77,7 +76,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    public List<Account> findClientAccounts(Long accountId){
+        List<Account> accounts = accountRepo.findByClientId(accountId);
+        return accounts;
+    }
     private int accountGenerator() {
         return ++nextAccountNumber;
     }
+
+
+
 }
