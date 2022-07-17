@@ -12,6 +12,8 @@ import { ShowDetailsComponent } from './user/show-details/show-details.component
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddDepotComponent } from './add-depot/add-depot.component';
+import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TransactionComponent,
     ShowDetailsComponent,
     NavbarComponent,
-    AddTransactionComponent
+    AddTransactionComponent,
+    AddDepotComponent,
+    AddWithdrawalComponent
      
   ],
   imports: [
