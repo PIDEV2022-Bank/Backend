@@ -6,6 +6,8 @@ import { GridOptions } from 'ag-grid-community';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ShowDetailsComponent } from '../user/show-details/show-details.component';
 import { AddTransactionComponent } from '../add-transaction/add-transaction.component';
+import { AddDepotComponent } from '../add-depot/add-depot.component';
+import { AddWithdrawalComponent } from '../add-withdrawal/add-withdrawal.component';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -76,4 +78,20 @@ export class AccountComponent implements OnInit {
     this.modalService.open(AddTransactionComponent, ngbModalOptions);
   }
 
+
+  openDepotModal() {
+    const ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(AddDepotComponent, ngbModalOptions);
+  }
+
+  openWithDrawalModal() {
+    const ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(AddWithdrawalComponent, ngbModalOptions);
+  }
 }
