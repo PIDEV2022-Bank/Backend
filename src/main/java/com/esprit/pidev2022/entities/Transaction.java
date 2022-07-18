@@ -1,5 +1,7 @@
 package com.esprit.pidev2022.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import java.io.Serializable;
@@ -16,8 +18,10 @@ public class Transaction implements Serializable {
 	private Long TransactionId;
 	private Date transactionDate;
 	private double amount;
-	@ManyToOne
-	@JoinColumn(name="account_Code")
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="account_Code")
+	//@JsonIgnore
 	private Account account;
 	private String description;
 

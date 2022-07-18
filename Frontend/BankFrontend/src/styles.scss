@@ -1,0 +1,101 @@
+//@import 'ag-grid-community/dist/styles/ag-grid.css';
+//@import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+@import "ag-grid-community/src/styles/ag-grid.scss";
+@import "ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham-mixin.scss";
+//@import "~@ng-select/ng-select/themes/default.theme.css";
+//@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+body{
+  background-color: #F5F5F5;
+}
+
+.ag-theme-balham {
+  @include ag-theme-balham(
+    (
+    header-foreground-color: var(--custom-header-foreground-color),
+    header-background-color: var(--custom-header-background-color),
+    header-border-color: var(--custom-header-border-color),
+
+    font-family: (Open Sans, sans-serif),
+    font-size: 12px,
+    background-color : #F5F5F5,
+            ),
+);
+.ag-paging-panel {
+  border: none;
+}
+}
+.ag-row .ag-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color : #F5F5F5;
+  color: rgb(75, 75, 75)
+}
+.ag-header-cell-label {
+  justify-content: center;
+}
+
+.ag-header{
+color:  #337AB7;
+font-weight: bolder;;
+}
+
+.page-title{
+  color:   #337AB7;
+
+}
+* {
+  font-family: Open Sans, sans-serif;
+}
+.modal-header{
+  background-color: #73BFA3;
+  color : white;
+}
+#filter-text-box{
+  background-color : #F5F5F5;
+  border: #999 1px solid;
+  width:200px;
+   height: 30px;
+    font-size: 12px;
+}
+
+
+.requir {
+  color: red;
+}
+
+
+.label-insc a {
+  color: #184b8a!important;
+}
+
+
+.center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+
+.interface-body{
+  margin : auto;
+  width: 98%;
+}
+
+.form-group{
+  font-size: 14px;
+}
+::placeholder {
+  font-size: 14px;
+}
+.close{
+  color: white;
+}
+.close:focus{
+  outline: none;
+  color: white;
+}
+.close:hover{
+  color: white;
+}

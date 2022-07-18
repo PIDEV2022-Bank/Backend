@@ -23,8 +23,8 @@ public class Request implements Serializable {
     private Date date;
     private String state;
     private String message;
-
-   @ManyToOne
-  private User user;
+    private String type;
+   @ManyToOne 
+    private User user;
 
 }
