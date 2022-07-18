@@ -52,7 +52,6 @@ public class RequestController {
     }
 
     @GetMapping("/all")
-
     public List<Request>getAllRequest() {
 
        return requestServ.findAllRequest();
