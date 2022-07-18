@@ -3,7 +3,6 @@ package com.esprit.pidev2022.security;
 import com.esprit.pidev2022.security.jwt.AuthEntryPointJwt;
 import com.esprit.pidev2022.security.jwt.AuthTokenFilter;
 import com.esprit.pidev2022.security.services.UserDetailsServiceImpl;
-import org.springdoc.core.providers.SpringWebProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +17,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -27,7 +28,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 		prePostEnabled = true)
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     UserDetailsServiceImpl beanauth;
 
@@ -63,22 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-
-        web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-ui/index.html");
-
         web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**","/h2/**","/h2/login**");
-
     }
 
- /*   @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**");
-    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -87,25 +74,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**","http://localhost:8082/**").permitAll()
                 // .antMatchers("/api/v1/**").permitAll()
-
-           //     .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
-              //  .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
-              //  .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")
-
-               //  .antMatchers("/**").permitAll()
-
                /* .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
                 .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
                 .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")*/
 
                .antMatchers("/**").permitAll()
-
                 .anyRequest().authenticated();
 
 
         http.addFilterBefore(create_filter_jwt(),
                 UsernamePasswordAuthenticationFilter.class);
+
+
     }
+
+
+
 
 
 }
