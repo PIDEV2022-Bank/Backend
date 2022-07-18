@@ -32,6 +32,8 @@ public class ComplaintController {
 
          }*/
     @GetMapping("/all")
+
+
     public List<Complaint>getAllComplaints(){
         return  complaintService.findAllComplaints();}
     @GetMapping("/{complaintId}")
