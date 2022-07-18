@@ -1,0 +1,32 @@
+a{
+    font-size: large;
+    margin-left : 25px;
+    color: white;
+  
+  }
+  #navBar{
+    background-color: #73BFA3;
+    color: white;
+    margin-bottom: 30px;
+  }
+  
+  .fitNavigation{
+    width: 98%;
+    margin:auto;
+    display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+  }
+  #menu{
+    display: flex;
+      flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  img{
+    width: 190px;
+    margin-left: -26px;
+  }
+  
