@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import { TransactionComponent } from './user/transaction/transaction.component';
 import { ShowDetailsComponent } from './user/show-details/show-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,6 +14,9 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowRequestComponent } from './request/show-request/show-request.component';
 import { SimulateurComponent } from './simulateur/simulateur.component';
+import { ComplaintComponent } from './complaint/complaint.component';
+import { AddDepotComponent } from './add-depot/add-depot.component';
+import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +26,13 @@ import { SimulateurComponent } from './simulateur/simulateur.component';
     NavbarComponent,
     AddTransactionComponent,
     ShowRequestComponent,
-    SimulateurComponent
-     
+    SimulateurComponent,
+    AddTransactionComponent,
+    ComplaintComponent,
+    AddTransactionComponent,
+    AddDepotComponent,
+    AddWithdrawalComponent
+
   ],
   imports: [
     BrowserModule,

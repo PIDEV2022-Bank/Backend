@@ -1,6 +1,8 @@
 package com.esprit.pidev2022.Controller;
 
+import com.esprit.pidev2022.Dto.DepotDto;
 import com.esprit.pidev2022.Dto.TransferDto;
+import com.esprit.pidev2022.Dto.WithdrawaltDto;
 import com.esprit.pidev2022.Exception.AccountNotFoundException;
 import com.esprit.pidev2022.Exception.BalanceNotEnoughException;
 import com.esprit.pidev2022.entities.*;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping("/transactions")
+@RequestMapping("transactions")
 @CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
 
@@ -27,18 +29,18 @@ public class TransactionController {
 
 
     @PostMapping("/accounts/retrait")
-    public ResponseEntity<WithdrawalTransaction> withdrawal(@RequestBody WithdrawalTransaction withdrawalTransaction) throws AccountNotFoundException, BalanceNotEnoughException {
-        this.transactionService.withdrawal(withdrawalTransaction.getAccount().getAccountNumber(), withdrawalTransaction.getAmount(), withdrawalTransaction.getDescription());
-        return new ResponseEntity<>(withdrawalTransaction, HttpStatus.OK);
+    public ResponseEntity<WithdrawaltDto> withdrawal(@RequestBody WithdrawaltDto withdrawal) throws AccountNotFoundException, BalanceNotEnoughException {
+        this.transactionService.withdrawal(withdrawal.getAccountSource(), withdrawal.getAmount(), withdrawal.getDescription());
+        return new ResponseEntity<>(withdrawal, HttpStatus.OK);
 
     }
 
 
 
     @PostMapping("/accounts/depot")
-    public ResponseEntity<DepositTransaction> deposit (@RequestBody DepositTransaction depositTransaction) throws AccountNotFoundException {
-        this.transactionService.deposit(depositTransaction.getAccount().getAccountNumber(), depositTransaction.getAmount(), depositTransaction.getDescription());
-        return new ResponseEntity<>(depositTransaction, HttpStatus.OK);
+    public ResponseEntity<DepotDto> deposit (@RequestBody DepotDto depot) throws AccountNotFoundException {
+        this.transactionService.deposit(depot.getAccountDestination(), depot.getAmount(), depot.getDescription());
+        return new ResponseEntity<>(depot, HttpStatus.OK);
 
     }
 

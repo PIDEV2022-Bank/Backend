@@ -31,6 +31,8 @@ public class ComplaintController {
 
          }*/
     @GetMapping("/all")
+    @CrossOrigin("http://127.0.0.1:4200")
+
     public List<Complaint>getAllComplaints(){
         return  complaintService.findAllComplaints();}
     @GetMapping("/{complaintId}")
