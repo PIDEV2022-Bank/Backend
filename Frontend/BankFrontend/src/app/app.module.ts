@@ -14,6 +14,7 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddDepotComponent } from './add-depot/add-depot.component';
 import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.component';
+import { ForumComponent } from './forum/forum.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.componen
     NavbarComponent,
     AddTransactionComponent,
     AddDepotComponent,
-    AddWithdrawalComponent
+    AddWithdrawalComponent,
+    ForumComponent
      
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
+import { ForumComponent } from './forum/forum.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
 
 const routes: Routes = [
@@ -10,6 +11,9 @@ const routes: Routes = [
     component: TransactionComponent, 
     data: { title: 'Transaction' }
   },
+
+   { path:'forum', component :ForumComponent},
+ 
 
 ]
 
