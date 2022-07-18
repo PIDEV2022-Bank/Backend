@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RestController
 @Transactional
 @RequestMapping("/Request")
+@CrossOrigin("http://127.0.0.1:4200")
 public class RequestController {
     @Autowired
     public JavaMailSender emailSender;
@@ -51,6 +52,7 @@ public class RequestController {
     }
 
     @GetMapping("/all")
+
     public List<Request>getAllRequest() {
 
        return requestServ.findAllRequest();
