@@ -2,7 +2,8 @@ package com.esprit.pidev2022.entities;
 
 public class MyConstants {
     // Replace with your email here:
-    public static final String MY_EMAIL = "mohamedbechir.lahmedi@esprit.tn";
+    public static final String MY_EMAIL ="mohamedbechir.lahmedi@esprit.tn";
+
 
     // Replace password!!
     public static final String MY_PASSWORD = "azerty123++";
