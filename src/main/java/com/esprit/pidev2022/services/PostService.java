@@ -2,8 +2,6 @@ package com.esprit.pidev2022.services;
 
 
 import com.esprit.pidev2022.Exception.PostNotFoundException;
-import com.esprit.pidev2022.entities.Comment;
-import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.Post;
 import com.esprit.pidev2022.repository.PostRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,10 @@ public class PostService {
 
 
     public Post addPost(Post post){
+
+      post.setContained(post.getContained());
+      post.setTitle(post.getTitle());
+
         return postRepository.save(post);
     }
     public Post updatePost(Post post){

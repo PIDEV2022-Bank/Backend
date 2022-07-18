@@ -1,4 +1,5 @@
 package com.esprit.pidev2022.entities;
+import com.esprit.pidev2022.security.model.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -6,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -22,9 +24,12 @@ public class Forum implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      Long id;
      String title;
-     int idUser;
+    Date dateCreated;
+
     @OneToMany(mappedBy = "forum")
     private List<Post> Posts = new ArrayList<>();
-
+ @ManyToOne(cascade =  CascadeType.REMOVE)
+@JoinColumn (name = "userId")
+ User user;
 }
 
