@@ -1,0 +1,41 @@
+
+<div class="interface-body">
+
+  <h3 class="page-title">Les Demandes</h3>
+
+  <div id="options" >
+
+    <input type="text" id="filter-text-box"  placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
+  </div>
+
+
+
+
+
+
+  <div style="width:100%; height: 100%">
+    <ag-grid-angular
+      #agGrid
+      style="width: 100%; height: 500px; margin: auto;"
+      class="ag-theme-balham"
+      id="myGrid"
+      [columnDefs]="columnDefs"
+      [animateRows]="true"
+      [suppressAggFuncInHeader]="true"
+      [rowData]="rowData"
+      [overlayNoRowsTemplate]="noRowsTemplate"
+      [overlayLoadingTemplate]="loadingTemplate"
+      [defaultColDef]="defaultColDef"
+      [gridOptions]="gridOptions"
+      pagination [paginationPageSize]="25"
+      pagination [paginationPageSize]="25"
+      [frameworkComponents]="frameworkComponents"
+
+
+    ></ag-grid-angular>
+
+  </div>
+
+
+</div>
+

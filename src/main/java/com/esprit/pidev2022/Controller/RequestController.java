@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RestController
 @Transactional
 @RequestMapping("/Request")
+@CrossOrigin("http://127.0.0.1:4200")
 public class RequestController {
     @Autowired
     public JavaMailSender emailSender;
@@ -50,17 +52,20 @@ public class RequestController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Request>> getAllRequest() {
 
-        List<Request> requests = requestServ.findAllRequest();
-        return new ResponseEntity<>(requests, HttpStatus.OK);
+    public List<Request>getAllRequest() {
+
+       return requestServ.findAllRequest();
+
     }
 
     @GetMapping("/requestsByUser/{id}")
     public ResponseEntity<List<Request>> getResquestByUser(@PathVariable("id") int id){
         User u=new User();
         u.setId(id);
-        List<Request> request=requestServ.findAllRequestByUser(u);
+        System.out.printf("jjjjj"+ u.getId());
+        List<Request> request= requestServ.findAllRequestByUser(u);
+        System.out.println("test" +request);
         return new ResponseEntity<>(request,HttpStatus.OK);
     }
 

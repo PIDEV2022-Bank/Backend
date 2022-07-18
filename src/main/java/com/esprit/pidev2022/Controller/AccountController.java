@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping("/account")
+
 @CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
 

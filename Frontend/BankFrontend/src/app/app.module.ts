@@ -12,6 +12,8 @@ import { ShowDetailsComponent } from './user/show-details/show-details.component
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShowRequestComponent } from './request/show-request/show-request.component';
+import { SimulateurComponent } from './simulateur/simulateur.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { AddDepotComponent } from './add-depot/add-depot.component';
 import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.component';
@@ -22,6 +24,9 @@ import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.componen
     TransactionComponent,
     ShowDetailsComponent,
     NavbarComponent,
+    AddTransactionComponent,
+    ShowRequestComponent,
+    SimulateurComponent,
     AddTransactionComponent,
     ComplaintComponent,
     AddTransactionComponent,
