@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping("/complaint")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ComplaintController {
 
     private  final ComplaintService complaintService;
@@ -31,8 +32,6 @@ public class ComplaintController {
 
          }*/
     @GetMapping("/all")
-    @CrossOrigin("http://127.0.0.1:4200")
-
     public List<Complaint>getAllComplaints(){
         return  complaintService.findAllComplaints();}
     @GetMapping("/{complaintId}")
