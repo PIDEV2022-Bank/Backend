@@ -1,6 +1,7 @@
 package com.esprit.pidev2022.security.controller;
 
-import com.esprit.pidev2022.security.ActiveUserStore;
+import com.esprit.pidev2022.entities.MyConstants;
+//import com.esprit.pidev2022.security.ActiveUserStore;
 import com.esprit.pidev2022.security.load.request.LoginRequest;
 import com.esprit.pidev2022.security.load.request.SignupRequest;
 import com.esprit.pidev2022.security.load.response.JwtResponse;
@@ -16,6 +17,8 @@ import com.esprit.pidev2022.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -52,6 +55,8 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder; // le bean de cryptage
 
+    @Autowired
+    public JavaMailSender emailSender;
    // @Autowired
    // ActiveUserStore activeUserStore;
 
@@ -122,6 +127,26 @@ public class AuthController {
         user.setRoles(roles); // accorder la liste des Roles
         userRepository.save(user); // enregistrer dans la base
 
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setTo(MyConstants.FRIEND_EMAIL2);
+        message.setSubject("Following your registration ");
+        message.setText("Dear "+signupRequest.getUsername()  +
+                "\n" +
+                "We confirm receipt of your registration, your account will be ready for use as soon as it is validated by our agents.\n" +
+                "\n" +
+                "You can follow your registration request via the link : \n" +
+                "\n" +
+                "To send a complaint about your registration please contact us at mohamedBechir.lahmedi@esprit.tn or fares.elouissi@esprit.tn \n" +
+                "\n" +
+                "thank you for your trust in our bank! "+"\n" +
+                "\n" +
+                "This is an automatic mail please do not reply "
+        );
+
+        // Send Message!
+        this.emailSender.send(message);
+
         return ResponseEntity.ok(new MessageResponse("User Registred successfully !!!!"));
     }
 
@@ -161,6 +186,29 @@ public class AuthController {
                        userdetails.getUsername(),
                         userdetails.getEmail(),
                        roles));
+    }
+
+    @GetMapping("/check_existing_user/{email}")
+    public ResponseEntity<?> Check_user(@PathVariable("email") String email){
+
+        if(userRepository.existsByEmail(email) !=false){
+
+            Optional<User> user = userRepository.findByEmail(email);
+            SimpleMailMessage message = new SimpleMailMessage();
+
+            message.setTo(MyConstants.FRIEND_EMAIL2);
+            message.setSubject("Reseting password... ");
+            message.setText("Dear "+user.get().getUsername() +
+                    "\n" +
+                    "We confirm receipt of your request to change your password, please access the following link to change it .\n"
+            );
+
+            // Send Message!
+            this.emailSender.send(message);
+
+        }
+
+        return ResponseEntity.ok(new MessageResponse("User Registred successfully !!!!"));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
