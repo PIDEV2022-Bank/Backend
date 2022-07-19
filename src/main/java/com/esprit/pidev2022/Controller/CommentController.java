@@ -3,9 +3,13 @@ package com.esprit.pidev2022.Controller;
 import com.esprit.pidev2022.entities.Comment;
 import com.esprit.pidev2022.entities.Forum;
 
+import com.esprit.pidev2022.entities.MyConstants;
 import com.esprit.pidev2022.services.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -17,7 +21,8 @@ import java.util.List;
 @RequestMapping("/Comment")
 public class CommentController {
     private final CommentService commentService;
-
+    @Autowired
+    public JavaMailSender emailSender;
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
@@ -43,6 +48,14 @@ public class CommentController {
         if (comment.getDateCreated()==null)
         {comment.setDateCreated(new Date());}
         Comment newComment = commentService.addComment(comment);
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setTo(MyConstants.FRIEND_EMAIL);
+        message.setSubject("Succes");
+        message.setText("Hello added with success");
+
+        // Send Message!
+        this.emailSender.send(message);
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
