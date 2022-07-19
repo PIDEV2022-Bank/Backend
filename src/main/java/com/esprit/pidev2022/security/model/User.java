@@ -4,6 +4,7 @@ import com.esprit.pidev2022.entities.Account;
 import com.esprit.pidev2022.entities.Complaint;
 import com.esprit.pidev2022.entities.Request;
 import com.esprit.pidev2022.entities.product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -124,6 +125,12 @@ public class User {
     @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)
     public List<Account> accounts;
 
-
-
+    @JsonBackReference
+    public List<Request> getRequests() {
+        return requests;
+    }
+    @JsonBackReference
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
 }
