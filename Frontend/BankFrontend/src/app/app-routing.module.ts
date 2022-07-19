@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
+import { AddCommentComponent } from './add-comment/add-comment.component';
+import { AddPostComponent } from './add-post/add-post.component';
+import { PostComponent } from './post/post.component';
+import { ForumComponent } from './forum/forum.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
 import {ShowRequestComponent} from "./request/show-request/show-request.component";
 import {SimulateurComponent} from "./simulateur/simulateur.component";
@@ -17,6 +21,12 @@ const routes: Routes = [
     component: TransactionComponent,
     data: { title: 'Transaction' }
   },
+
+   { path:'forum', component :ForumComponent},
+     {path:'addpost', component :AddPostComponent},
+     {path:'comment', component :AddCommentComponent},
+     {path:'post', component :PostComponent},
+ 
 
 ]
 

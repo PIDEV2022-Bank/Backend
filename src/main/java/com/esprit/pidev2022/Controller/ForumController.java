@@ -18,14 +18,15 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping("/Forum")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ForumController {
     private final ForumService forumService;
     @Autowired
     public JavaMailSender emailSender;
-    private final RequestService requestServ;
-    public ForumController(ForumService forumService, RequestService requestServ) {
+
+    public ForumController(ForumService forumService) {
         this.forumService = forumService;
-        this.requestServ = requestServ;
+
     }
 
     @GetMapping("/all")

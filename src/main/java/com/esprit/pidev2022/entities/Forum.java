@@ -25,6 +25,7 @@ public class Forum implements Serializable {
      Long id;
      String title;
     Date dateCreated;
+    String body;
 
     @OneToMany(mappedBy = "forum")
     private List<Post> Posts = new ArrayList<>();
