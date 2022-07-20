@@ -1,0 +1,21 @@
+
+<div class="body">
+  <div class="row">
+    <div class ="col col-12 col-md-6 col-lg-" *ngFor="let item of forums">
+      <div class="container">
+
+
+        <div class="card" style="width: 22rem;">
+          <h5 class="card-title">{{item.title}}</h5>
+          <h6 class="card-date">{{item.dateCreated|date:'medium'}}</h6>
+           <img src="assets/bank.webp" class="card-img-top" alt="...">
+           <h5 class="card-body">{{item.body}}</h5>
+             <a href="post" class="btn btn-primary" onclick="getAllPost()">Posts</a>
+           
+          
+      </div>  
+    </div>
+  </div>
+
+  
+  
