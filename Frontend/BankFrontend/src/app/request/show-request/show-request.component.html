@@ -1,41 +1,32 @@
+<a class="clickable" (click)="AfficherDone()">En cours</a>
 
-<div class="interface-body">
+<a class="clickable"(click)="AfficherEnCours()">Historique </a>
+<div [ngClass]="{'hide':!encours}">
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Nom Client</th>
+    <th scope="col">Demande</th>
+    <th scope="col">Date</th>
+    <th scope="col">Etat</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
 
-  <h3 class="page-title">Les Demandes</h3>
+  <tbody *ngFor="let p of Request">
+  <tr >
+    <th scope="row">{{p.idRequest}}</th>
+    <td>{{p.user.username}}</td>
+    <td>{{p.type}}</td>
+    <td>{{p.date}}</td>
+    <td>{{p.state}}</td>
+    <td>
 
-  <div id="options" >
-
-    <input type="text" id="filter-text-box"  placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
-  </div>
-
-
-
-
-
-
-  <div style="width:100%; height: 100%">
-    <ag-grid-angular
-      #agGrid
-      style="width: 100%; height: 500px; margin: auto;"
-      class="ag-theme-balham"
-      id="myGrid"
-      [columnDefs]="columnDefs"
-      [animateRows]="true"
-      [suppressAggFuncInHeader]="true"
-      [rowData]="rowData"
-      [overlayNoRowsTemplate]="noRowsTemplate"
-      [overlayLoadingTemplate]="loadingTemplate"
-      [defaultColDef]="defaultColDef"
-      [gridOptions]="gridOptions"
-      pagination [paginationPageSize]="25"
-      pagination [paginationPageSize]="25"
-      [frameworkComponents]="frameworkComponents"
-
-
-    ></ag-grid-angular>
-
-  </div>
-
-
+      <button type="button" (click)="UpdateStatus(p.idRequest)" class="btn btn-info">DONE</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
 </div>
 

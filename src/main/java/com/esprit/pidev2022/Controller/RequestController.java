@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.Controller;
 
+import com.esprit.pidev2022.entities.Complaint;
 import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.MyConstants;
 import com.esprit.pidev2022.entities.Request;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @Transactional
-@RequestMapping("/Request")
+@RequestMapping(value = "/Request")
 @CrossOrigin(origins = "http://localhost:4200")
 public class RequestController {
     @Autowired
@@ -75,11 +76,21 @@ public class RequestController {
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
-
+    @PutMapping("/updateStatusToDone/{id}")
+public ResponseEntity<Request> updateStatus(@PathVariable Long id){
+        Request request=requestServ.findById(id);
+        requestServ.updateRequestStatustoDone(request);
+        return new ResponseEntity<>(request,HttpStatus.OK);
+    }
+   // @RequestMapping( method = RequestMethod.DELETE)
     @DeleteMapping("/remove/{Id}")
-    public void removeRequest(@PathVariable("Id") Long id ){
-requestServ.deleteRequest(id);
+      public void removeRequest(@PathVariable("Id") Long id ){
+     requestServ.deleteRequest(id);
 
     }
+
+
+
+
 
 }
