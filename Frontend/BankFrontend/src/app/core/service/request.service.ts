@@ -17,4 +17,12 @@ export class RequestService {
   getAll(){
   return  this.http.get<Request[]>("http://localhost:8082/Request/all");
   }
+
+  delete( id:number){
+    return this.http.delete<Request>("http://localhost:8082/Request/remove/"+{id});
+  }
+
+  changeToDone(id:number){
+    return this.http.put("http://localhost:8082/Request/updateStatusToDone/"+id,id);
+  }
 }
