@@ -1,1 +1,44 @@
-<p>complaint works!</p>
+<input type="button" (click)="AfficherHistorique()" class="btn" value="Afficher Historique">
+<input type="button" (click)="AfficherEnCours()" class="btn" value="Afficher en cours">
+<div [ngClass]="{'hide':historique}">
+<table id="customers" *ngIf="rowData" width="800px" class="container">
+
+    <th>#</th>
+    <th>Subject</th>
+    <th>message</th>
+    <th>User</th>
+    <th>status</th>
+  <th>done</th>
+
+
+<tbody *ngFor="let item of rowData; let i=index;">
+<tr *ngIf="item.status!='done'">
+  <td>{{item.idComplaint}}</td>
+  <td>{{item.subject}}</td>
+  <td>{{item.message}}</td>
+  <td>{{item.user.username}}</td>
+  <td>{{item.status}}</td>
+  <td><input class="btn btn-success" type="button" value="done" (click)=changeToDone(item.idComplaint) ></td>
+</tr>
+</tbody>
+  <!--&lt;!&ndash;<tr>
+
+
+
+
+    &lt;!&ndash;
+
+    &ndash;&gt;
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td><input type="button" (click)="changeToDone(i)" )></td>
+
+  </tr>&ndash;&gt;-->
+
+</table>
+</div>
+<div>
+
+</div>

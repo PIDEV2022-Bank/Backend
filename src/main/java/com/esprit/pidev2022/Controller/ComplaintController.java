@@ -49,7 +49,7 @@ public class ComplaintController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/updateStatusToDone/{complaintID}")
-    public ResponseEntity<Complaint> updateComplaintStatus(@RequestBody Long complaintID) {
+    public ResponseEntity<Complaint> updateComplaintStatus(@PathVariable Long complaintID) {
         Complaint complaint= complaintService.findComplaintById(complaintID);
         complaintService.updateComplaintStatusToDone(complaint);
         return new ResponseEntity<>(complaint, HttpStatus.OK);

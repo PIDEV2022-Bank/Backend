@@ -1,7 +1,10 @@
+import {User} from "../core/models/user";
+
 export class Complaint {
   idComplaint:number
-  messge: string
+  message: string
   subject:string
   status:string
+  user : User
 
 }
