@@ -17,6 +17,8 @@ import { SimulateurComponent } from './simulateur/simulateur.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { AddDepotComponent } from './add-depot/add-depot.component';
 import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { AddWithdrawalComponent } from './add-withdrawal/add-withdrawal.componen
     ComplaintComponent,
     AddTransactionComponent,
     AddDepotComponent,
-    AddWithdrawalComponent
+    AddWithdrawalComponent,
+
 
   ],
   imports: [

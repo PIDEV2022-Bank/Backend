@@ -37,4 +37,11 @@ public Request updateRequest(Request r){
         requestRepo.deleteById(id);
 
     }
+    public void updateRequestStatustoDone(Request request){
+        request.setState("Done");
+        requestRepo.save(request);
+    }
+    public Request findById(Long id){
+        return requestRepo.findById(id).get();
+    }
 }
