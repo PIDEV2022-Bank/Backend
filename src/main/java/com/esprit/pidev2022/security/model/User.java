@@ -114,6 +114,7 @@ public class User {
     /****** Relations ***********/
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     public List<Complaint> complaints;
 
     @OneToMany(mappedBy = "user")
@@ -133,4 +134,5 @@ public class User {
     public void setRequests(List<Request> requests) {
         this.requests = requests;
     }
+
 }
