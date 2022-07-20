@@ -1,25 +1,49 @@
 
 <div class="body">
+  <a href ="addpost"class="btn btn-primary" >New Post</a>
     <div class="row">
-      <div class ="col col-12 col-md-6 col-lg-">
+      <div class ="col col-12 col-md-6 col-lg-"  *ngFor="let item of posts">
         <div class="container">
-        <a href ="addpost"class="btn btn-primary" >New Post</a>
-            
             <br>
             <br>
-  
+
           <div class="card" style="width: 22rem;">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">{{item.title}}</h5>
+            <h5 class="card-body">{{item.dateCreated|date:'medium'}}</h5>
              <img src="assets/bank.webp" class="card-img-top" alt="...">
              <div class="card-body">
-               <h5 class="card-title">Post Post Post</h5>
+               <h5 class="card-body">{{item.contained}}</h5>
                <p class="card-text">
-                 
+
                </p>
                <a href="comment" class="btn btn-primary" onclick="getAllComment()">Comments</a>
              </div>
             </div>
-        </div>  
+        </div>
       </div>
     </div>
+
     </div>
+
+<!--<div style="width:100%; height: 100%">
+  <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 500px; margin: auto;"
+    class="ag-theme-balham"
+    id="myGrid"
+    [columnDefs]="columnDefs"
+    [animateRows]="true"
+    [suppressAggFuncInHeader]="true"
+    [rowData]="rowData"
+    [overlayNoRowsTemplate]="noRowsTemplate"
+    [overlayLoadingTemplate]="loadingTemplate"
+    [defaultColDef]="defaultColDef"
+    [gridOptions]="gridOptions"
+    pagination [paginationPageSize]="25"
+    pagination [paginationPageSize]="25"
+    [frameworkComponents]="frameworkComponents"
+
+
+  ></ag-grid-angular>
+-->
+

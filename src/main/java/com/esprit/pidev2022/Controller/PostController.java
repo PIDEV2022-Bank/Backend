@@ -20,6 +20,8 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping("/Post")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class PostController {
     private final PostService postService;
     @Autowired

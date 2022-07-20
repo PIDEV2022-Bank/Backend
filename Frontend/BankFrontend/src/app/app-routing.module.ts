@@ -9,6 +9,7 @@ import { TransactionComponent } from './user/transaction/transaction.component';
 import {ShowRequestComponent} from "./request/show-request/show-request.component";
 import {SimulateurComponent} from "./simulateur/simulateur.component";
 import {ComplaintComponent} from "./complaint/complaint.component";
+import {CommentComponent} from "./comment/comment.component";
 
 const routes: Routes = [
   { path: '\admin', component: AccountComponent},
@@ -24,9 +25,9 @@ const routes: Routes = [
 
    { path:'forum', component :ForumComponent},
      {path:'addpost', component :AddPostComponent},
-     {path:'comment', component :AddCommentComponent},
+     {path:'addcomment', component :AddCommentComponent},
      {path:'post', component :PostComponent},
- 
+    {path:'comment', component :CommentComponent},
 
 ]
 

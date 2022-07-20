@@ -19,6 +19,7 @@ import { ForumComponent } from './forum/forum.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { PostComponent } from './post/post.component';
+import { CommentComponent } from './comment/comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { PostComponent } from './post/post.component';
     PostComponent,
 
 
-    AddWithdrawalComponent
+    AddWithdrawalComponent,
+        CommentComponent
 
   ],
   imports: [

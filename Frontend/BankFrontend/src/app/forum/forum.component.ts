@@ -10,31 +10,27 @@ import {forum} from '../core/models/forum';
 })
 
 export class ForumComponent implements OnInit {
- r: string 
 
-  
      forums :forum[]
-     
-    constructor(private data: ForumService) {
-      
-     }
+
+    constructor(private data: ForumService) {}
 
 
 
     ngOnInit(): void {
-      this.data.getAllForum().subscribe( 
+      this.data.getAllForum().subscribe(
      (data: forum[]) => {this.forums= data ;
     console.log(data)}
-     
+
      );
-  
-      
+
+
     }
 
-    
+
 
   }
 
- 
+
 
 

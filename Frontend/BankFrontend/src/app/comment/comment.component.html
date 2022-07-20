@@ -1,0 +1,25 @@
+<div class="body">
+  <a href ="addcomment"class="btn btn-primary" >New Comment</a>
+  <div class="row">
+    <div class ="col col-12 col-md-6 col-lg-"  *ngFor="let item of comments">
+      <div class="container">
+        <br>
+        <br>
+
+        <div class="card" style="width: 22rem;">
+          <h5 class="card-title">{{item.id}}</h5>
+          <h5 class="card-body">{{item.dateCreated|date:'medium'}}</h5>
+          <img src="assets/bank.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-body">{{item.contained}}</h5>
+            <p class="card-text">
+
+            </p>
+          <!--  <a href="comment" class="btn btn-primary" onclick="getAllComment()">Comments</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
