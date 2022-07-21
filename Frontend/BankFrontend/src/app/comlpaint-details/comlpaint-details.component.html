@@ -1,0 +1,35 @@
+<div class="container">
+<table>
+  <tr>
+    <td>id Complaint</td>
+    <td>{{complaint.idComplaint}}</td>
+  </tr> <tr>
+    <td>User Name</td>
+    <td>{{complaint.user.username}}</td>
+  </tr> <tr>
+    <td>User E-mail</td>
+    <td>{{complaint.user.email}}</td>
+  </tr> <tr>
+    <td>Complaint Subject</td>
+    <td>{{complaint.subject}}</td>
+  </tr> <tr>
+    <td>Complaint Message</td>
+    <td>{{complaint.message}}</td>
+  </tr> <tr>
+    <td>Complaint Status</td>
+    <td>{{complaint.status}}</td>
+  </tr>
+
+  <tr *ngIf="complaint.status=='done'">
+    <td>Done</td>
+  <td><input type="button" class="btn btn-danger boutton" value="Done" (click)="changeToDone(complaint.idComplaint)"></td>
+
+ </tr>
+
+  <tr *ngIf="complaint.status!='done'">
+    <td>Rollback</td>
+    <td><input type="button" class="btn btn-success boutton" value="Rollback" (click)="changeToRollback(complaint.idComplaint)"></td>
+  </tr>
+
+</table>
+</div>

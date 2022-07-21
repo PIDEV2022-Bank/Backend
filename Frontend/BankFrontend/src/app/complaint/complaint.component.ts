@@ -16,7 +16,7 @@ export class ComplaintComponent implements OnInit {
 
 //complaints:Complaint[]
     rowData:Complaint[]
-  constructor(private complaintservice : ComplaintService) { }
+  constructor(private complaintservice : ComplaintService ) { }
 
   ngOnInit(): void {
     this.complaintservice.getAllComplaints().subscribe(
@@ -32,6 +32,13 @@ export class ComplaintComponent implements OnInit {
 
   changeToDone(id:number) {
     this.complaintservice.changeToDone(id).subscribe()
+    setTimeout(()=>{window.location.reload();},1700)
+
+
+  }  changeToRollback(id:number) {
+    this.complaintservice.changeToRollback(id).subscribe()
+    setTimeout(()=>{window.location.reload();},1700)
+
   }
 
   AfficherEnCours() {
@@ -42,5 +49,11 @@ export class ComplaintComponent implements OnInit {
   AfficherHistorique() {
     this.enCours=false
     this.historique=true
+  }
+
+  details(idComplaint: number) {
+    console.log(idComplaint)
+
+
   }
 }

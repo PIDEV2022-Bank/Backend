@@ -45,5 +45,8 @@ public class ComplaintService {
     public void updateComplaintStatusToDone(Complaint complaint) {
         complaint.setStatus("done");
          complaintRepository.save(complaint);
+    }   public void updateComplaintStatusToRollback(Complaint complaint) {
+        complaint.setStatus("not treated yet");
+         complaintRepository.save(complaint);
     }
 }

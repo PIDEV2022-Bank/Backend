@@ -1,0 +1,13 @@
+tr td {
+  text-align: left;
+  padding-left: 10px;
+  border:   1px solid black;
+
+}
+table{
+  width: 800px;
+  border:   1px solid black;
+}
+.boutton{
+  width: 100px;
+}

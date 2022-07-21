@@ -9,22 +9,44 @@ import { TransactionComponent } from './user/transaction/transaction.component';
 import {ShowRequestComponent} from "./request/show-request/show-request.component";
 import {SimulateurComponent} from "./simulateur/simulateur.component";
 import {ComplaintComponent} from "./complaint/complaint.component";
+import {ComlpaintDetailsComponent} from "./comlpaint-details/comlpaint-details.component";
+
+import {HomeComponent} from "./home/home.component";
+import {AdminComponent} from "./admin/admin.component";
+import {UserComponent} from "./user/user.component";
+import {UserInterfaceComponent} from "./user-interface/user-interface.component";
+import {ComplaintAddComponent} from "./complaint-add/complaint-add.component";
+import {MyComlaintComponent} from "./my-comlaint/my-comlaint.component";
 const routes: Routes = [
-  { path: '\admin', component: AccountComponent},
-  {path:'\allRequest',component: ShowRequestComponent},
+  {path: '', component:HomeComponent},
+  {path:'user', component:UserInterfaceComponent,
+    children: [
+      { path: 'addComplaint', component: ComplaintAddComponent },
+      {path:'myComplaint',component: MyComlaintComponent},]},
+  { path: 'admin', component: AdminComponent,
+    children: [
+      { path: 'complaint', component: ComplaintComponent },
+      {path:'allRequest',component: ShowRequestComponent},
+      { path:'forum', component :ForumComponent},
+      {path:'complaint/:complaintId', component :ComlpaintDetailsComponent},
+      { path: 'account', component: AccountComponent},
+    ],},
+
   {path:'\simulateur',component:SimulateurComponent},
-  { path: '\complaint', component: ComplaintComponent},
+  //{ path: 'admin/complaint', component: ComplaintComponent},
   {
     path: 'transactions/accounts/:id/operations',
     component: TransactionComponent,
     data: { title: 'Transaction' }
   },
 
-   { path:'forum', component :ForumComponent},
+
      {path:'addpost', component :AddPostComponent},
      {path:'comment', component :AddCommentComponent},
      {path:'post', component :PostComponent},
- 
+
+
+
 
 ]
 
