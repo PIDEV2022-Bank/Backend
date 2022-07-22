@@ -24,7 +24,7 @@ export class ComplaintComponent implements OnInit {
 
 
     setTimeout(() => {
-      console.log(this.rowData)
+      console.log(this.rowData[0].username)
     }, 1000);
 
 

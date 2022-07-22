@@ -1,15 +1,17 @@
-<div class="container">
-<table>
+<div class=" d-flex align-items-center flex-column ">
+  <H2 class="d-flex justify-content-center pt-5 pb-5"> Complaint Detail</H2>
+
+  <table >
   <tr>
     <td>id Complaint</td>
     <td>{{complaint.idComplaint}}</td>
   </tr> <tr>
     <td>User Name</td>
-    <td>{{complaint.user.username}}</td>
-  </tr> <tr>
+    <td>{{complaint.username}}</td>
+  </tr> <!--<tr>
     <td>User E-mail</td>
-    <td>{{complaint.user.email}}</td>
-  </tr> <tr>
+    <td>{{complaint.email}}</td>
+  </tr>--> <tr>
     <td>Complaint Subject</td>
     <td>{{complaint.subject}}</td>
   </tr> <tr>
@@ -22,13 +24,14 @@
 
   <tr *ngIf="complaint.status=='done'">
     <td>Done</td>
-  <td><input type="button" class="btn btn-danger boutton" value="Done" (click)="changeToDone(complaint.idComplaint)"></td>
+    <td><input type="button" class="btn btn-danger boutton" value="Rollback" (click)="changeToRollback(complaint.idComplaint)"></td>
 
  </tr>
 
   <tr *ngIf="complaint.status!='done'">
     <td>Rollback</td>
-    <td><input type="button" class="btn btn-success boutton" value="Rollback" (click)="changeToRollback(complaint.idComplaint)"></td>
+    <td><input type="button" class="btn btn-success boutton" value="Done" (click)="changeToDone(complaint.idComplaint)"></td>
+
   </tr>
 
 </table>

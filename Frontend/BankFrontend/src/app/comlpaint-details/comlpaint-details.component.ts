@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ComplaintService} from "../services/complaint.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Complaint} from "../Models/Complaint";
 
 @Component({
@@ -11,7 +11,7 @@ import {Complaint} from "../Models/Complaint";
 export class ComlpaintDetailsComponent implements OnInit {
 id:Number
   complaint:Complaint
-  constructor(private complaintservice : ComplaintService, private route:ActivatedRoute) { }
+  constructor(private complaintservice : ComplaintService, private route:ActivatedRoute ,private router: Router) { }
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params.complaintId;
@@ -23,12 +23,12 @@ id:Number
   }
   changeToDone(id:number) {
     this.complaintservice.changeToDone(id).subscribe()
-    setTimeout(()=>{window.location.reload();},1700)
+    setTimeout(()=>{this.router.navigateByUrl('/admin/complaint')},1700)
 
 
   }  changeToRollback(id:number) {
     this.complaintservice.changeToRollback(id).subscribe()
-    setTimeout(()=>{window.location.reload();},1700)
+    setTimeout(()=>{this.router.navigateByUrl('/admin/complaint')},1700)
 
   }
 

@@ -32,7 +32,7 @@ const routes: Routes = [
       { path: 'account', component: AccountComponent},
     ],},
 
-  {path:'\simulateur',component:SimulateurComponent},
+  {path:'simulateur',component:SimulateurComponent},
   //{ path: 'admin/complaint', component: ComplaintComponent},
   {
     path: 'transactions/accounts/:id/operations',

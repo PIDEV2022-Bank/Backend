@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.Controller;
 
+import com.esprit.pidev2022.Dto.ComplaintUserDTO;
 import com.esprit.pidev2022.entities.Complaint;
 import com.esprit.pidev2022.entities.MyConstants;
 import com.esprit.pidev2022.security.model.User;
@@ -36,12 +37,12 @@ public class ComplaintController {
     @GetMapping("/all")
 
 
-    public List<Complaint>getAllComplaints(){
-        return  complaintService.findAllComplaints();}
+    public List<ComplaintUserDTO>getAllComplaints(){
+        return  complaintService.findAllComplaintsUsers();}
     @GetMapping("/{complaintId}")
-    public ResponseEntity<Complaint> getComplaintById(@PathVariable("complaintId") Long complaintId){
-        Complaint complaint=complaintService.findComplaintById(complaintId);
-        return new ResponseEntity<>(complaint , HttpStatus.OK);
+    public ResponseEntity<ComplaintUserDTO> getComplaintById(@PathVariable("complaintId") Long complaintId){
+        ComplaintUserDTO complaintDTO=complaintService.findComplaintByIdDTO(complaintId);
+        return new ResponseEntity<>(complaintDTO , HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{complaintID}")
@@ -83,10 +84,10 @@ public class ComplaintController {
     @ResponseBody
     public ResponseEntity<Complaint> addComplaint(@RequestBody Complaint complaint) {
         User user = new User();
-        user.setId(1);
-        user.setUsername("FARES");
+        user.setId(2);
         complaint.setUser(user);
          complaintService.addComplaint(complaint);
+         System.out.println(complaint);
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(MyConstants.FRIEND_EMAIL);

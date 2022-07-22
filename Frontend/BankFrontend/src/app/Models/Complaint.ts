@@ -5,6 +5,7 @@ export class Complaint {
   message: string
   subject:string
   status:string
-  user : User
+  idUser : number
+  username :string
 
 }

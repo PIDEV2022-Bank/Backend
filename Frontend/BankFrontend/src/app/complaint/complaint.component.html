@@ -1,6 +1,7 @@
 <input type="button" (click)="AfficherHistorique()" class="btn" value="Afficher Historique">
 <input type="button" (click)="AfficherEnCours()" class="btn" value="Afficher en cours">
 <div [ngClass]="{'hide':historique}">
+  <H2 class="d-flex justify-content-center pt-5 pb-5"> Treated Complaits</H2>
 <table id="customers" *ngIf="rowData" width="800px" class=" customers container">
 
     <th>#</th>
@@ -18,7 +19,7 @@
   <td>{{item.idComplaint}}</td>
   <td>{{item.subject}}</td>
   <td>{{item.message}}</td>
-  <td>{{item.user.username}}</td>
+  <td>{{item.username}}</td>
   <td>{{item.status}}</td>
   <td><input class="btn btn-success" type="button" value="done" (click)=changeToDone(item.idComplaint) ></td>
   <td><input class="btn btn-outline-info" type="button" value="details" routerLink="/admin/complaint/{{item.idComplaint}}"> </td>
@@ -30,6 +31,8 @@
 </div>
 
   <div [ngClass]="{'hide':enCours}">
+    <H2 class="d-flex justify-content-center pt-5 pb-5">Pending complaints </H2>
+
     <table  *ngIf="rowData" width="800px" class="customers container">
 
       <th>#</th>
@@ -46,10 +49,10 @@
         <td>{{item.idComplaint}}</td>
         <td>{{item.subject}}</td>
         <td>{{item.message}}</td>
-        <td>{{item.user.username}}</td>
+        <td>{{item.username}}</td>
         <td>{{item.status}}</td>
         <td><input class="btn btn-danger" type="button" value="Rollback" (click)=changeToRollback(item.idComplaint) ></td>
-        <td><input class="btn btn-outline-info" type="button" value="details" routerLink="/admin/complaint{{item.idComplaint}}"> </td>
+        <td><input class="btn btn-outline-info" type="button" value="details" routerLink="/admin/complaint/{{item.idComplaint}}"> </td>
 
       </tr>
       </tbody>
