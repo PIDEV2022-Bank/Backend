@@ -1,12 +1,16 @@
-<form #c>
+
+<form   [formGroup]="commentForm" (ngSubmit)="saveComment()">
   <div class="container">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="contained">Comment</label>
+          <!--<input class="form-control" id="description" required [(ngModel)]="post.contained" name="description"/>-->
+          <input type="text" class="form-control" id="contained" formControlName="contained"/>
+        </div>
+        <button type="Submit"  class="btn btn-success" >Submit</button>
+      </div>
 
-    <div class="mb-6">
-      <label  class="form-label">Body</label>
-      <textarea class="form-control" rows="3"></textarea>
     </div>
-    <br> <br>
-    <button type="button" class="btn btn-primary" onsubmit="AddComment()">Add</button>
-
   </div>
 </form>

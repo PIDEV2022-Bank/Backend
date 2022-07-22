@@ -74,7 +74,15 @@ public class ForumController {
     }
 
 
+    @GetMapping("/findPost/{id}/{idpost}")
+    public ResponseEntity<?> findPostByForum( @PathVariable("id")Long id, @PathVariable("idpost")Long idPost)
+    {
+        Forum forum = forumService.findForumById(id);
+        forum.getPosts().get(idPost.compareTo(id));
 
+        return new ResponseEntity<>(forum, HttpStatus.OK);
+
+    }
 
 
     }

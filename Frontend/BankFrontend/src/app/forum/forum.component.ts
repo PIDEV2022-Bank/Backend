@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ForumService} from '../core/service/forum.service';
 import {forum} from '../core/models/forum';
+import {post} from "../core/models/post";
 
 @Component({
   selector: 'app-forum',

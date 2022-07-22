@@ -20,6 +20,10 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
+import {NgbButtonsModule} from "@ng-bootstrap/ng-bootstrap";
+import { AddForumComponent } from './add-forum/add-forum.component';
+import { PdetailComponent } from './pdetail/pdetail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,17 +46,21 @@ import { CommentComponent } from './comment/comment.component';
 
 
     AddWithdrawalComponent,
-        CommentComponent
+        CommentComponent,
+        AddForumComponent,
+
+        PdetailComponent
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AgGridModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AgGridModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgbButtonsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

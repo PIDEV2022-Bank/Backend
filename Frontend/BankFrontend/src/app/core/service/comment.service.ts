@@ -26,9 +26,9 @@ export class CommentService {
 
   addComment(data: any) {
     console.warn(data)
-    const commentId = data.commentId
+    //const commentId = data.commentId
     const msg = data.msg
-    const createAt = data.createAt
-    return this.http.post(`http://localhost:8082//new?msg=${msg}&idcomment=${commentId}`, {})
+  //  const createAt = data.createAt
+    return this.http.post( 'http://localhost:8082/Comment/add/',{msg})
   }
 }

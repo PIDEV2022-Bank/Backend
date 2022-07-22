@@ -10,6 +10,8 @@ import {ShowRequestComponent} from "./request/show-request/show-request.componen
 import {SimulateurComponent} from "./simulateur/simulateur.component";
 import {ComplaintComponent} from "./complaint/complaint.component";
 import {CommentComponent} from "./comment/comment.component";
+import {AddForumComponent} from "./add-forum/add-forum.component";
+import {PdetailComponent} from "./pdetail/pdetail.component";
 
 const routes: Routes = [
   { path: '\admin', component: AccountComponent},
@@ -28,6 +30,8 @@ const routes: Routes = [
      {path:'addcomment', component :AddCommentComponent},
      {path:'post', component :PostComponent},
     {path:'comment', component :CommentComponent},
+    {path:'addforum', component : AddForumComponent},
+  {path:'detailPost', component : PdetailComponent},
 
 ]
 

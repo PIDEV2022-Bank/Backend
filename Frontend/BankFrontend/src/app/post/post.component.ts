@@ -18,35 +18,9 @@ import {Subscription} from "rxjs";
 export class PostComponent implements OnInit {
 
   posts:post[]
-  /*isEmpty = true;
-  noRowsTemplate: string;
-  loadingTemplate: string;
-  defaultColDef = { resizable: true };
-  rowData: post[] | undefined;
-  gridOptions: GridOptions;
-  domLayout = "autoHeight";
-  frameworkComponents = { showDetailsComponent: ShowDetailsComponent }
-  columnDefs = [
-    { headerName: 'IdPost', field: 'id', sortable: true, filter: true, width: 300 },
-    { headerName: 'DateCreated', field: 'date', sortable: true, width: 200 },
 
-    { headerName: 'Post', field: 'contained', sortable: true, width: 200 },
-
-  ];*/
   constructor( private data: PostService){
-               /*private modelService :NgbModal)
 
-  {this.noRowsTemplate =
-    `<span style="color: #999;">Aucun projet ajouté</span>`;
-    this.loadingTemplate =
-      `Chargement en cours`;
-    this.gridOptions = {
-      rowData: this.rowData,
-      columnDefs: this.columnDefs, }
-  }
-  onFilterTextBoxChanged() {
-    this.gridOptions.api?.setQuickFilter((<HTMLInputElement>document.getElementById('filter-text-box')).value);
-*/
   }
 
   ngOnInit(): void {

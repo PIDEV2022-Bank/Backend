@@ -11,6 +11,7 @@ export class PostService {
   getAllPost()
   {
     return this.http.get<any>("http://localhost:8082/Post/all")
+
   }
   getPostbyID( id:number)
   {
@@ -27,6 +28,11 @@ export class PostService {
     console.warn(data)
     const title=data.title
     const msg=data.msg
-    return  this.http.post(`http://localhost:8082/post/add/new?idClient=1&msg=${msg}&title=${title}`,{})
+    return  this.http.post(`http://localhost:8082/Post/add/`,{title,msg})
+  }
+  findcommentByPost( id:number,idPost:number)
+  {
+
+    return this.http.get('http://localhost:8082/Post/findComment'+id+idPost)
   }
 }

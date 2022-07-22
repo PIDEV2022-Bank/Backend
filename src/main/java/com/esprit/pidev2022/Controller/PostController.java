@@ -1,8 +1,6 @@
 package com.esprit.pidev2022.Controller;
 
-import com.esprit.pidev2022.entities.Comment;
-import com.esprit.pidev2022.entities.MyConstants;
-import com.esprit.pidev2022.entities.Post;
+import com.esprit.pidev2022.entities.*;
 import com.esprit.pidev2022.services.PostService;
 import com.esprit.pidev2022.entities.Post;
 import com.esprit.pidev2022.services.PostService;
@@ -76,6 +74,15 @@ public class PostController {
     }
 
 
+    @GetMapping("/findComment/{id}/{idComment}")
+    public ResponseEntity<?> findcommentByPost( @PathVariable("id")Long id, @PathVariable("idComment")Long idPost)
+    {
+        Post post = postService.findPostById(id);
+        post.getComments().get(idPost.compareTo(id));
+
+        return new ResponseEntity<>(post, HttpStatus.OK);
+
+    }
 
 
 }

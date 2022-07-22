@@ -27,8 +27,10 @@ export class ForumService {
     return this.http.delete('http://localhost:8082/Forum/delete/'+id)
   }
 
-
-
+  findCommentByPost(id : number)
+{
+  return
+}
 
 
 
@@ -37,7 +39,14 @@ export class ForumService {
     console.warn(data)
     const title=data.title
     const msg=data.msg
-    return  this.http.post(`http://localhost:8082/forum/add/new?idClient=1&msg=${msg}&title=${title}`,{})
+
+    return this.http.post( 'http://localhost:8082/Forum/add/',{title,msg})
+  }
+
+  findPostByForum( id:number,idPost:number)
+  {
+
+    return this.http.get('http://localhost:8082/Forum/findPost'+id+idPost)
   }
 
 }

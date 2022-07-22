@@ -15,7 +15,12 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.getAllComment().subscribe(
-      (data: comment[]) => {this.comments = data;
-        console.log(data)});
+      (data: comment[]) => {
+        this.comments = data;
+        console.log(data[0].contained)
+      });
   }
+
+
+
 }
