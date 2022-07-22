@@ -36,8 +36,9 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     public void deposit (String accountNumber, double amount, String description) throws AccountNotFoundException {
         Account account = getAccount(accountNumber);
-        DepositTransaction deposit = new DepositTransaction(new Date(),amount,account,
+        DepositTransaction deposit = new DepositTransaction( new Date(),amount,account,
                 description);
+        deposit.setMouvement("CREDIT");
         transactionRepo.save(deposit);
         //    account.getTransactions().add(deposit);
         account.setBalance(account.getBalance().add(new BigDecimal(amount)));
@@ -55,6 +56,7 @@ public class TransactionServiceImpl implements TransactionService{
             throw new BalanceNotEnoughException("Solde insuffisant");
         WithdrawalTransaction   withdrawal = new WithdrawalTransaction(
                 new Date(),amount,account, description);
+        withdrawal.setMouvement("DEBIT");
         transactionRepo.save(withdrawal);
         account.setBalance((account.getBalance().subtract(new BigDecimal(amount))));
         accountRepo.save(account);

@@ -27,6 +27,7 @@ import { UserComponent } from './user/user.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { MyComlaintComponent } from './my-comlaint/my-comlaint.component';
+import { LoginComponent } from './authentication/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { MyComlaintComponent } from './my-comlaint/my-comlaint.component';
         UserComponent,
         SpinnerComponent,
         UserInterfaceComponent,
-        MyComlaintComponent
+        MyComlaintComponent,
+        LoginComponent
 
   ],
   imports: [

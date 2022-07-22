@@ -8,6 +8,7 @@ import { ShowDetailsComponent } from '../user/show-details/show-details.componen
 import { AddTransactionComponent } from '../add-transaction/add-transaction.component';
 import { AddDepotComponent } from '../add-depot/add-depot.component';
 import { AddWithdrawalComponent } from '../add-withdrawal/add-withdrawal.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -24,15 +25,18 @@ export class AccountComponent implements OnInit {
   domLayout = "autoHeight";
   frameworkComponents = { showDetailsComponent: ShowDetailsComponent }
   columnDefs = [
-    { headerName: 'Numero Compte', field: 'accountNumber', sortable: true, filter: true, width: 300 },
-    { headerName: 'solde', field: 'balance', sortable: true, width: 200 },
+    { headerName: 'Numero Compte', field: 'accountNumber', sortable: true, filter: true, width: 200 },
+    { headerName: 'Type', field: 'accountType', sortable: true, width: 120 },
+    { headerName: 'solde', field: 'balance', sortable: true, width: 120 },
     {
-      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width: 200,
+      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width: 180,
       cellRenderer: (data: { value: string | number | Date; }) => {
-        return data.value ? (new Date(data.value)).toLocaleDateString('fr-FR') : '';
+        return data.value ? (new Date(data.value)).toLocaleString('fr-FR') : '';
+      //  toLocaleDateString('fr-FR') : ''
       }
     },
-    { headerName: 'Client', field: 'client', sortable: true, width: 200 },
+    { headerName: 'Client', field: 'client.username', sortable: true, width: 200 },
+    { headerName: 'Email', field: 'client.email', sortable: true, width: 200 },
     {
       headerName: 'Historique Transaction', sortable: true, filter: true, maxWidth: 200,
       cellRenderer: 'showDetailsComponent',
@@ -41,7 +45,7 @@ export class AccountComponent implements OnInit {
 
   ];
   
-  constructor(public accountService: AccountService, private modalService: NgbModal) {this.noRowsTemplate =
+  constructor(public accountService: AccountService, private modalService: NgbModal,private router:Router) {this.noRowsTemplate =
     `<span style="color: #999;">Aucun projet ajouté</span>`;
   this.loadingTemplate =
     `Chargement en cours`;
@@ -54,12 +58,28 @@ export class AccountComponent implements OnInit {
    
   }
   ngOnInit() {
-    this.accountService.getMyAccounts();
-   // this.accountService.getMyAccounts(localStorage.getItem('idUser'));
-    this.listening();
-    this.accountService.emitAccounts();
-  }
-
+    let id = localStorage?.getItem('idUser');
+    console.log(id);
+    let role = localStorage?.getItem('role');
+     switch (role) {
+         
+       case "ROLE_USER": {
+         
+         this.accountService.getUserAccounts(Number(id));
+         this.router.navigateByUrl("/home");
+         break;
+       }
+       case "ROLE_ADMIN": {
+         this.accountService.getMyAccounts();
+         this.router.navigateByUrl("/admin");
+         break;
+       }
+     }
+  
+    // this.accountService.getMyAccounts(localStorage.getItem('idUser'));
+     this.listening();
+     this.accountService.emitAccounts();
+   }
   listening() {
     this.AccountSubscription = this.accountService.accountSubject.subscribe((accounts: Account[]) => {
       if (accounts) {
@@ -94,4 +114,6 @@ export class AccountComponent implements OnInit {
     };
     this.modalService.open(AddWithdrawalComponent, ngbModalOptions);
   }
+
+  
 }

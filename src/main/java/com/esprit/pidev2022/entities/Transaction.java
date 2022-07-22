@@ -24,6 +24,7 @@ public class Transaction implements Serializable {
 	//@JsonIgnore
 	private Account account;
 	private String description;
+	private String mouvement;
 
 	public Transaction() {
 		super();

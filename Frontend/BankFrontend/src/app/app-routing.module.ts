@@ -17,12 +17,15 @@ import {UserComponent} from "./user/user.component";
 import {UserInterfaceComponent} from "./user-interface/user-interface.component";
 import {ComplaintAddComponent} from "./complaint-add/complaint-add.component";
 import {MyComlaintComponent} from "./my-comlaint/my-comlaint.component";
+import { LoginComponent } from './authentication/login/login.component';
 const routes: Routes = [
   {path: '', component:HomeComponent},
+  {path: 'login', component:LoginComponent},
   {path:'user', component:UserInterfaceComponent,
     children: [
       { path: 'addComplaint', component: ComplaintAddComponent },
-      {path:'myComplaint',component: MyComlaintComponent},]},
+      {path:'myComplaint',component: MyComlaintComponent},
+      { path: 'account', component: AccountComponent},]},
   { path: 'admin', component: AdminComponent,
     children: [
       { path: 'complaint', component: ComplaintComponent },

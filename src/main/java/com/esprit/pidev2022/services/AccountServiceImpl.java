@@ -5,6 +5,7 @@ import com.esprit.pidev2022.Exception.AccountNotFoundException;
 import com.esprit.pidev2022.entities.*;
 import com.esprit.pidev2022.repository.AccountRepository;
 import com.esprit.pidev2022.repository.TransactionRepository;
+import com.esprit.pidev2022.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -29,27 +30,27 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public SavingAccount createSavingAccount(SavingAccount savingAccount) {
-        // User user = UserService.getUser(1L);
-
-        // SavingAccount savingAccount = new SavingAccount();
+    public SavingAccount createSavingAccount(User user) {
+        SavingAccount savingAccount = new SavingAccount();
         savingAccount.setBalance(new BigDecimal(0.0));
         savingAccount.setStatus(false);
         savingAccount.setCreationDate(new Date());
-        savingAccount.setAccountNumber("TN01S"+String.valueOf(accountGenerator()));
-        // savingAccount.setClient(user);
+        savingAccount.setAccountNumber("TN01EPARGNE"+String.valueOf(accountGenerator()));
+        savingAccount.setClient(user);
+        savingAccount.setAccountType("Compte Epargne");
 
         return accountRepo.save(savingAccount);
     }
 
     @Override
-    public DepositAccount createDepositAccount () {
-        // User user = UserService.getUser(userId);
+    public DepositAccount createDepositAccount(User user) {
         DepositAccount depositAccount = new DepositAccount();
         depositAccount.setBalance(new BigDecimal(0.0));
         depositAccount.setCreationDate(new Date());
         depositAccount.setStatus(false);
-        depositAccount.setAccountNumber("TN02D"+String.valueOf(accountGenerator()));
+        depositAccount.setAccountNumber("TN02COURANT"+String.valueOf(accountGenerator()));
+        depositAccount.setClient(user);
+        depositAccount.setAccountType("Compte Courant");
         return  accountRepo.save(depositAccount);
 
     }
@@ -76,8 +77,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
-    public List<Account> findClientAccounts(Long accountId){
-        List<Account> accounts = accountRepo.findByClientId(accountId);
+    public List<Account> findClientAccounts(Long clientId){
+        List<Account> accounts = accountRepo.findByClientId(clientId);
         return accounts;
     }
     private int accountGenerator() {

@@ -14,6 +14,8 @@ export class AddDepotComponent implements OnInit {
   TransactionForm: FormGroup;
   submitted = false;
   isValidDate = true;
+  role=localStorage?.getItem('role');
+  id = localStorage?.getItem('idUser')
   constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal,  
      private accountService: AccountService, private router: Router) { }
 
@@ -22,6 +24,7 @@ export class AddDepotComponent implements OnInit {
       amount: ['', Validators.required],
       accountDestination: ['', Validators.required]
     });
+  
   }
  
 
@@ -39,11 +42,9 @@ export class AddDepotComponent implements OnInit {
        return;
     }
     const transfer = this.TransactionForm.value;
-    this.accountService.addDepot(transfer).subscribe((res) => {
-      if (res.status == 200){
-        if (res.body != null){
-
-
+    this.accountService.addDepot(transfer).subscribe((response) => {
+      if (response.status == 200){
+    
          this.accountService.getMyAccounts();
             
          //  this.toastr.success('Projet ajouté avec succès', '',this.toastConfig);
@@ -51,11 +52,17 @@ export class AddDepotComponent implements OnInit {
            this.activeModal.close();
            this.router.navigate(['AccountComponent']);
            });
-      }
+      
     }
   
 }, (err) => {
-  this.activeModal.close();
+ this.activeModal.close();
+ if(this.role =="ROLE_USER"){
+  this.accountService.getUserAccounts(Number(this.id))
+ }else{
+  this.accountService.getMyAccounts();
+ }
+
  // this.toastr.error("Problème survenu lors de l'ajout", '',this.toastConfig);
   console.log(err);
 } );

@@ -85,4 +85,14 @@ getMyAccounts() {
        );
    }
 
+   getUserAccounts(iduser:number) {
+    this.http.get<any>(apiJavaUrl + "/account/accounts/user/"+iduser).subscribe(response => {
+      response.sort((item1: Account, item2: Account) => {
+        return item1.id - item2.id;
+      });
+      this.accounts = response;
+      
+      this. emitAccounts();
+    });
+  }
 }

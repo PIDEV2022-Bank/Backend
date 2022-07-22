@@ -121,7 +121,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     public List<product> products;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)
     public List<Account> accounts;
 
@@ -133,5 +133,6 @@ public class User {
     public void setRequests(List<Request> requests) {
         this.requests = requests;
     }
+
 
 }

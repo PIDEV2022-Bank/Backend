@@ -1,0 +1,49 @@
+.requir {
+    color: red;
+  }
+
+  .card{
+    margin-top: 60px;
+    width: 420px;
+  }
+
+  .center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+  }
+
+  a{
+    font-size: 14px;
+  }
+
+  .card-header {
+    background:#73BFA3 ;
+    color: white;
+    padding-bottom: 9px;
+    padding-top: 9px;
+    max-height: 100px;
+
+  }
+
+
+  button:disabled,
+  button[disabled]{
+    color: #fff;
+    background-color: #73BFA3 ;
+    border-color: #73BFA3 ;
+  }
+
+  .btn {
+    background: #73BFA3;
+    color: white;
+    background-color: #73BFA3 !important;
+    border-color: #73BFA3 !important;
+
+  }
+
+
+  ::placeholder {
+    font-size: 14px;
+  }

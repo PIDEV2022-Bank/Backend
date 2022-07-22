@@ -37,21 +37,21 @@ public class AccountController {
 
 
 
-    @PostMapping("/add/savingAccount")
+  /*  @PostMapping("/add/savingAccount")
     @ResponseBody
     public ResponseEntity<SavingAccount> addSavingAccount (@RequestBody SavingAccount savingAccount) {
         SavingAccount saving = accountService.createSavingAccount(savingAccount);
         return new ResponseEntity<>(saving, HttpStatus.CREATED);
 
-    }
+    }*/
 
-    @PostMapping("/add/depositAccount")
+   /* @PostMapping("/add/depositAccount")
     @ResponseBody
     public ResponseEntity<Account> addDepositAccount () {
         Account deposit = accountService.createDepositAccount();
         return new ResponseEntity<>(deposit, HttpStatus.CREATED);
 
-    }
+    }*/
 
 
 
@@ -72,6 +72,12 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllForum() {
 
         List<Account> accounts = accountService.findAllAccount();
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
+    }
+
+    @GetMapping("/accounts/user/{id}")
+    public ResponseEntity<List<Account>> getTransactions(@PathVariable("id") Long userId){
+        List<Account> accounts =accountService.findClientAccounts(userId);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 

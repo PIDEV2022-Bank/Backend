@@ -12,6 +12,7 @@ import com.esprit.pidev2022.security.repository.UserRepository;
 import com.esprit.pidev2022.security.jwt.JwtUtils;
 import com.esprit.pidev2022.security.services.UserDetailsImpl;
 
+import com.esprit.pidev2022.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,9 @@ public class AuthController {
 
     @Autowired
     PasswordEncoder encoder; // le bean de cryptage
+
+    @Autowired
+    AccountService accountservice;
 
     @PostMapping("/signup")
     public ResponseEntity<?> register_user(@Valid @RequestBody SignupRequest signupRequest) {
@@ -114,7 +118,12 @@ public class AuthController {
         }
 
         user.setRoles(roles); // accorder la liste des Roles
+
         userRepository.save(user); // enregistrer dans la base
+        accountservice.createDepositAccount(user);
+        accountservice.createSavingAccount(user);
+
+
 
         return ResponseEntity.ok(new MessageResponse("User Registred successfully !!!!"));
     }

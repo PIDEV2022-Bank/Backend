@@ -26,7 +26,9 @@ public  class Account implements Serializable {
 	private String accountNumber;
 	private Date creationDate;
 	private BigDecimal balance;
+	private String AccountType;
 	boolean status;
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn (name="clientCode")
 	private User client;
