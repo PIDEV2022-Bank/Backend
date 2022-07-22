@@ -16,8 +16,14 @@ export class ComplaintService {
   changeToDone(id:Number){
     return this.http.put('http://localhost:8082/complaint/updateStatusToDone/'+id,id)
 
+  }changeToRollback(id:Number){
+    return this.http.put('http://localhost:8082/complaint/updateStatusToRollback/'+id,id)
+
   }
   deleteComplaint(id:Number){
     return this.http.delete('http://localhost:8082/complaint/delete/'+id)
+  }
+  getComplaintById(id:Number){
+    return this.http.get<Complaint>('http://localhost:8082/complaint/'+id)
   }
 }

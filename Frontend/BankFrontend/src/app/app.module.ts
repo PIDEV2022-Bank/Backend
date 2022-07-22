@@ -19,6 +19,14 @@ import { ForumComponent } from './forum/forum.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { PostComponent } from './post/post.component';
+import { ComlpaintDetailsComponent } from './comlpaint-details/comlpaint-details.component';
+import { ComplaintAddComponent } from './complaint-add/complaint-add.component';
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { UserInterfaceComponent } from './user-interface/user-interface.component';
+import { MyComlaintComponent } from './my-comlaint/my-comlaint.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +48,15 @@ import { PostComponent } from './post/post.component';
     PostComponent,
 
 
-    AddWithdrawalComponent
+    AddWithdrawalComponent,
+        ComlpaintDetailsComponent,
+        ComplaintAddComponent,
+        HomeComponent,
+        AdminComponent,
+        UserComponent,
+        SpinnerComponent,
+        UserInterfaceComponent,
+        MyComlaintComponent
 
   ],
   imports: [
