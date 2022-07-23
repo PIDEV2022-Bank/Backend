@@ -1,0 +1,34 @@
+
+<script src="../forum/forum.component.ts"></script>
+<script src="../post/post.component.ts"></script>
+<form [formGroup]="forumForm" (ngSubmit)="updateForum()">
+  <div class="container">
+
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+
+        <div class="form-group" >
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" required formControlName="title"/>
+        </div>
+        <div class="form-group">
+          <!--<input class="form-control" id="description" required [(ngModel)]="post.contained" name="description"/>-->
+          <div>
+            <label class="sr-only" for="body">Description</label>
+            <textarea
+              class=" form-control w-full p-3 text-sm border-gray-200 rounded-lg"
+              placeholder="Description"
+
+
+              rows="8"
+              id="body" formControlName="body"
+            ></textarea>
+          </div>
+        </div>
+
+        <button  type="Submit"  class="btn btn-success" >Modifier</button>
+      </div>
+
+    </div>
+  </div>
+</form>

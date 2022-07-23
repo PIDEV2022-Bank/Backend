@@ -72,14 +72,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(bean_auth_exception).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**","http://localhost:8082/**").permitAll()
+                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 // .antMatchers("/api/v1/**").permitAll()
                /* .antMatchers("/medecins**").hasAnyRole("ADMIN","SECRETAIRE")
                 .antMatchers("/clients**").hasAnyRole("ADMIN","SECRETAIRE")
                 .antMatchers("/rdvs**").hasAnyRole("SECRETAIRE","USER")*/
-
-               .antMatchers("/**").permitAll()
-                .anyRequest().authenticated();
+                //.anyRequest().authenticated();
+                .anyRequest().permitAll();
 
 
         http.addFilterBefore(create_filter_jwt(),

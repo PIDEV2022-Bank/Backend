@@ -38,6 +38,6 @@ public class ForumService {
     }
 
     public List<Forum > findAllForum()
-    {return (List<Forum>) forumRepository.findAll();
+    {return (List<Forum>) forumRepository.findAllByOrderByIdDesc();
     }
 }

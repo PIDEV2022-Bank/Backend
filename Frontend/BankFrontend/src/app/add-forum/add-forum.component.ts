@@ -4,7 +4,7 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PostService} from "../core/service/post.service";
 import {ForumService} from "../core/service/forum.service";
 import Swal from "sweetalert2";
-
+import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: 'app-add-forum',
   templateUrl: './add-forum.component.html',
@@ -21,28 +21,15 @@ export class AddForumComponent implements OnInit {
   title = 'addForum';
 
   closeResult: string = '';
-  constructor(private modalService :NgbModal,private forumService :ForumService) {
+  constructor(private forumService :ForumService,private route: ActivatedRoute,private router: Router
+  ) {
 
   }
 
   ngOnInit(): void {
   }
-  open(content:any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
+
+
   saveForum():void {
 
     const data = this.forumForm.value
@@ -59,6 +46,7 @@ export class AddForumComponent implements OnInit {
             confirmButtonText: 'ok'
 
           })
+          this.router.navigateByUrl("forum")
         },
         error: (e) => console.error(e)
       });

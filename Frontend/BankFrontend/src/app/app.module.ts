@@ -23,7 +23,14 @@ import { CommentComponent } from './comment/comment.component';
 import {NgbButtonsModule} from "@ng-bootstrap/ng-bootstrap";
 import { AddForumComponent } from './add-forum/add-forum.component';
 import { PdetailComponent } from './pdetail/pdetail.component';
-
+import { FdetailComponent } from './fdetail/fdetail.component';
+import { CdetailComponent } from './cdetail/cdetail.component';
+import { EditForumComponent } from './edit-forum/edit-forum.component';
+import {UpdatePostComponent} from "./update-post/update-post.component";
+import { EditCommentComponent } from './edit-comment/edit-comment.component';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {  HttpRequestInterceptor} from './_helpers/http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +50,19 @@ import { PdetailComponent } from './pdetail/pdetail.component';
     AddPostComponent,
     AddCommentComponent,
     PostComponent,
+    UpdatePostComponent,
 
 
     AddWithdrawalComponent,
         CommentComponent,
         AddForumComponent,
 
-        PdetailComponent
+        PdetailComponent,
+          FdetailComponent,
+          CdetailComponent,
+          EditForumComponent,
+          EditCommentComponent,
+          LoginComponent
 
   ],
     imports: [
@@ -61,7 +74,9 @@ import { PdetailComponent } from './pdetail/pdetail.component';
         FormsModule,
         NgbButtonsModule,
     ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,
+  useClass: HttpRequestInterceptor,
+  multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

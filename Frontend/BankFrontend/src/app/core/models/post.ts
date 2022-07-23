@@ -7,4 +7,6 @@ export class post {
   contained: string;
   comments: [comment];
   idUser: number;
+  idForum:number;
+  user:any
 }

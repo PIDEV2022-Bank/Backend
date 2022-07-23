@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.entities;
 
+import com.esprit.pidev2022.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,10 +24,9 @@ public class Comment implements Serializable {
     Long id;
     Date dateCreated;
     String contained;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "idPost")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    User user;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     Post post;
     @OneToMany
     private List<CommentChild> commentChildren = new ArrayList<>();

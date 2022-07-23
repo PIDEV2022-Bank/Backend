@@ -25,10 +25,11 @@ public class Forum implements Serializable {
      Long id;
      String title;
     Date dateCreated;
+
+    @Lob
+    @Column( length = 100000 )
     String body;
 
-    @OneToMany(mappedBy = "forum")
-    private List<Post> Posts = new ArrayList<>();
  @ManyToOne(cascade =  CascadeType.REMOVE)
 @JoinColumn (name = "userId")
  User user;

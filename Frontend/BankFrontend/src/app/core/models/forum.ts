@@ -7,4 +7,5 @@ export class forum {
     dateCreated: Date
     body :string
     posts:[post]
+  published:boolean
 }

@@ -1,0 +1,89 @@
+<div class="container">
+  <div *ngIf="viewModel; else editable">
+    <div *ngIf="currentForum.published">
+      <h4>Forum</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentForum.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentForum.body}}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentForum.published ? "Published" : "Pending" }}
+      </div>
+      <a
+        class="badge badge-warning" routerLink="/forum/find/{{ currentForum.id }}"
+      >
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentForum">
+      <br />
+      <p>Please click on a Post...</p>
+    </div>
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentForum.id" class="edit-form">
+      <h4>Post</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentForum.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentForum.body"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentForum.published ? "Published" : "Pending" }}
+        </div>
+      </form>
+
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentForum.published"
+        (click)="updatePublished(false)"
+      >
+        UnPublish
+      </button>
+      <button
+        *ngIf="!currentForum.published"
+        class="badge badge-primary mr-2"
+        (click)="updatePublished(true)"
+      >
+        Publish
+      </button>
+      <button class="badge badge-danger mr-2" (click)="deleteForum()">
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateForum(currentForum.id)"
+      >
+        Update
+      </button>
+
+      <p>{{ message }}</p>
+    </div>
+    <!-- <div *ngIf="!currentPost.value.id">
+       <br />
+       <p>Cannot access this Post...</p>
+     </div>-->
+  </ng-template>
+</div>

@@ -20,13 +20,10 @@ public class PostService {
 
     public Post addPost(Post post){
 
-      post.setContained(post.getContained());
-      post.setTitle(post.getTitle());
-
         return postRepository.save(post);
     }
     public Post updatePost(Post post){
-
+        System.out.println(post);
         return postRepository.save(post);
     }
     public void deletePost(Long id)
@@ -44,6 +41,9 @@ public class PostService {
     {return (List<Post>) postRepository.findAll();
     }
 
+    public List<Post> findAllPostByForum(Long id)
+    {return postRepository.findAllByForumId(id);
+    }
     public List<Post> findAllForum() {
         return (List<Post>) postRepository.findAll();
     }

@@ -1,0 +1,80 @@
+<div class="container">
+  <div *ngIf="viewMode; else editable">
+    <div *ngIf="currentComment.published">
+      <h4>Comment</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentComment.title }}
+      </div>
+      <div>
+        <label><strong>Comment:</strong></label>
+        {{ currentComment.contained }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentComment.published ? "Published" : "Pending" }}
+      </div>
+      <a
+        class="badge badge-warning" routerLink="/post/find/{{ currentComment.id }}"
+      >
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentComment">
+      <br />
+      <p>Please click on a Post...</p>
+    </div>
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentComment.id" class="edit-form">
+      <h4>Post</h4>
+      <form>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentComment.contained"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentComment.published ? "Published" : "Pending" }}
+        </div>
+      </form>
+
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentComment.published"
+        (click)="updatePublished(false)"
+      >
+        UnPublish
+      </button>
+      <button
+        *ngIf="!currentComment.published"
+        class="badge badge-primary mr-2"
+        (click)="updatePublished(true)"
+      >
+        Publish
+      </button>
+      <button class="badge badge-danger mr-2" (click)="deletePost()">
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateComment(currentComment.id)"
+      >
+        Update
+      </button>
+
+      <p>{{ message }}</p>
+    </div>
+    <!-- <div *ngIf="!currentPost.value.id">
+       <br />
+       <p>Cannot access this Post...</p>
+     </div>-->
+  </ng-template>
+</div>

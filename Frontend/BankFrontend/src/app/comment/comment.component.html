@@ -34,6 +34,12 @@
   </header>
   <!-- Main Content-->
   <div class="container px-4 px-lg-5">
+    <a class="relative inline-block text-sm font-medium text-white group focus:outline-none focus:ring" href="/addcomment/{{this.getpostid()}}">
+      <span class="absolute inset-0 border border-red-600 group-active:border-red-500"></span>
+      <span class="block px-12 py-3 transition-transform text-white-50 bg-red-600 border border-red-600 active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+    Ajouter
+  </span>
+    </a>
     <div class="row gx-4 gx-lg-5 justify-content-center" *ngFor="let item of comments">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <!-- Post preview-->
@@ -45,8 +51,10 @@
           </a>
           <p class="post-meta">
             Posted by
-            <a href="#!">User</a>
+            <a href="#!">{{item.user.username}}</a>
             on <h6 class="post-subtitle">{{item.dateCreated|date:'medium'}}</h6>
+          <a *ngIf="activeuser.id==item.user.id" href="editcomment/{{item.id}}" type="button" class="btn btn-warning mx-3 rounded-3">Modifier</a>
+          <button *ngIf="activeuser.id==item.user.id||activeuser.username=='admin'" type="button" class="btn btn-danger mx-3 rounded-3"  (click)="deleteComment(item.id)">Supprimer</button>
 
         </div>
         <!-- Divider-->
@@ -79,7 +87,7 @@
             </li>
             <li class="list-inline-item">
               <a href="#!">
-                                    <span class="fa-stack fa-lg">
+                            <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                                     </span>

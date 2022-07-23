@@ -3,7 +3,7 @@ package com.esprit.pidev2022.Controller;
 import com.esprit.pidev2022.entities.Forum;
 import com.esprit.pidev2022.entities.MyConstants;
 import com.esprit.pidev2022.services.ForumService;
-import com.esprit.pidev2022.services.RequestService;
+import com.esprit.pidev2022.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +21,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ForumController {
     private final ForumService forumService;
+    private final PostService postService;
     @Autowired
     public JavaMailSender emailSender;
 
-    public ForumController(ForumService forumService) {
+    public ForumController(ForumService forumService, PostService postService) {
         this.forumService = forumService;
 
+        this.postService = postService;
     }
 
     @GetMapping("/all")
@@ -60,10 +62,11 @@ public class ForumController {
         return new ResponseEntity<>(forum, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Forum> updateForum(@RequestBody Forum forum) {
+    @PostMapping ("/update/{id}")
+    public ResponseEntity<Forum> updateForum(@RequestBody Forum forum, @PathVariable("id") Long id) {
+        forum.setId(id);
         Forum updateForum = forumService.updateForum(forum);
-        return new ResponseEntity<>(forum, HttpStatus.OK);
+        return new ResponseEntity<>(updateForum, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -78,9 +81,8 @@ public class ForumController {
     public ResponseEntity<?> findPostByForum( @PathVariable("id")Long id, @PathVariable("idpost")Long idPost)
     {
         Forum forum = forumService.findForumById(id);
-        forum.getPosts().get(idPost.compareTo(id));
 
-        return new ResponseEntity<>(forum, HttpStatus.OK);
+        return new ResponseEntity<>(postService.findAllPostByForum(forum.getId()), HttpStatus.OK);
 
     }
 

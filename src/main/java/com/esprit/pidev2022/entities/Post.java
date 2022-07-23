@@ -1,5 +1,6 @@
 package com.esprit.pidev2022.entities;
 
+import com.esprit.pidev2022.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,14 +27,13 @@ public class Post implements Serializable {
     Date dateCreated;
     String contained ;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    User user;
 
 
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "idForum",insertable = false, updatable = false)
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     Forum forum;
-    @OneToMany(mappedBy = "post")
-    private List<Comment> comments = new ArrayList<>();
 
 }

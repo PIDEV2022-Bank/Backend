@@ -5,9 +5,12 @@ import com.esprit.pidev2022.entities.Complaint;
 import com.esprit.pidev2022.entities.Request;
 import com.esprit.pidev2022.entities.product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +22,8 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         }
 )
-public class User {
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -32,9 +36,11 @@ public class User {
     @Email
     private String email;
     @NotBlank
+    @JsonIgnore
     @Size(max=120)
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name="user_id"),
@@ -132,5 +138,29 @@ public class User {
     @JsonBackReference
     public void setRequests(List<Request> requests) {
         this.requests = requests;
+    }
+
+    public List<Complaint> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<Complaint> complaints) {
+        this.complaints = complaints;
+    }
+
+    public List<product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<product> products) {
+        this.products = products;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from "../core/service/post.service";
-
+import {ActivatedRoute, Router} from "@angular/router";
+import {StorageService} from "../_services/storage.service";
 import { FormControl, FormGroup } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2'
@@ -20,33 +21,24 @@ export class AddPostComponent implements OnInit {
     postForm = new FormGroup({
     title: new FormControl(''),
     contained: new FormControl(''),
+      idForum:new FormControl(this.route.snapshot.params["id"]),
+      user:new FormControl(this.storage.getUser())
+
   });
 submitted=false;
   title = 'addPost';
 
+
   closeResult: string = '';
-  constructor(private modalService :NgbModal,private postService :PostService) {
+  constructor(private postService :PostService,private route: ActivatedRoute,private router: Router,private storage:StorageService) {
 
   }
 
   ngOnInit(): void {
   }
-  open(content:any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
+
+
+
   savePost():void {
 
     const data = this.postForm.value
@@ -63,6 +55,8 @@ submitted=false;
             confirmButtonText: 'ok'
 
           })
+          this.router.navigateByUrl("/forum/"+this.route.snapshot.params["id"]+"/post")
+
 
         },
         error: (e) => console.error(e)
