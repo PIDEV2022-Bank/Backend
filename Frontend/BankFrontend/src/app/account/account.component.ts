@@ -28,17 +28,19 @@ export class AccountComponent implements OnInit {
     { headerName: 'Numero Compte', field: 'accountNumber', sortable: true, filter: true, width: 200 },
     { headerName: 'Type', field: 'accountType', sortable: true, width: 120 },
     { headerName: 'solde', field: 'balance', sortable: true, width: 120 },
+
     {
-      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width: 180,
+      headerName: 'Date création', field: 'creationDate', sortable: true, filter: true, width:120,
       cellRenderer: (data: { value: string | number | Date; }) => {
-        return data.value ? (new Date(data.value)).toLocaleString('fr-FR') : '';
-      //  toLocaleDateString('fr-FR') : ''
+        return data.value ? (new Date(data.value)). toLocaleDateString('fr-FR') : '';
+     
       }
     },
-    { headerName: 'Client', field: 'client.username', sortable: true, width: 200 },
+    { headerName: 'Client', field: 'client.username', sortable: true, width: 150 },
     { headerName: 'Email', field: 'client.email', sortable: true, width: 200 },
+    { headerName: 'Deccouvert', field: 'autorisation', sortable: true, width: 100 },
     {
-      headerName: 'Historique Transaction', sortable: true, filter: true, maxWidth: 200,
+      headerName: 'Historique Transaction', sortable: true, filter: true, maxWidth: 300,
       cellRenderer: 'showDetailsComponent',
       colId: 'params',
     },
@@ -66,12 +68,12 @@ export class AccountComponent implements OnInit {
        case "ROLE_USER": {
          
          this.accountService.getUserAccounts(Number(id));
-         this.router.navigateByUrl("/home");
+         this.router.navigateByUrl("/user/account");
          break;
        }
        case "ROLE_ADMIN": {
          this.accountService.getMyAccounts();
-         this.router.navigateByUrl("/admin");
+         this.router.navigateByUrl("/admin/account");
          break;
        }
      }

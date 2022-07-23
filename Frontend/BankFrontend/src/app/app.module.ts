@@ -28,6 +28,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { MyComlaintComponent } from './my-comlaint/my-comlaint.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { LoginComponent } from './authentication/login/login.component';
     AgGridModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     FormsModule,
   ],
   providers: [],

@@ -14,6 +14,8 @@ export class AddWithdrawalComponent implements OnInit {
   TransactionForm: FormGroup;
   submitted = false;
   isValidDate = true;
+  role=localStorage?.getItem('role');
+  id = localStorage?.getItem('idUser');
   constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal,  
      private accountService: AccountService, private router: Router) { }
 
@@ -56,8 +58,12 @@ export class AddWithdrawalComponent implements OnInit {
   
 }, (err) => {
   this.activeModal.close();
- // this.toastr.error("Problème survenu lors de l'ajout", '',this.toastConfig);
-  console.log(err);
+ // this.toastr.success('Depot effectué avec succès', '',this.toastConfig);
+  if(this.role =="ROLE_USER"){
+   this.accountService.getUserAccounts(Number(this.id))
+  }else{
+   this.accountService.getMyAccounts();
+  }
 } );
 
 

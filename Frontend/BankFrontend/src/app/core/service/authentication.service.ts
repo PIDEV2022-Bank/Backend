@@ -27,6 +27,13 @@ export class AuthenticationService {
     return this.http.post<any>( apiJavaUrl + '/api/auth/signin', {username, password});
 }
 
+logout() {
+    localStorage.clear();
+    this.isLoggedIn = false;
+    //this.currentUserSubject.next();
+    this.router.navigate(["login"]);
+  }
+
  
 
 }

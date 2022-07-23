@@ -28,12 +28,14 @@ export class TransactionComponent implements OnInit  {
 
   domLayout = "autoHeight";
   columnDefs = [
-    { headerName: 'Réference Transaction', field: 'transactionId', sortable: true, filter: true, width: 300 },
-    { headerName: 'Montant', field: 'amount', sortable: true, width: 300 },
+    { headerName: 'Réference Transaction', field: 'transactionId', sortable: true, filter: true, width: 200 },
+    { headerName: 'Mouvement', field: 'mouvement', sortable: true, width: 150 },
+    { headerName: 'Montant', field: 'amount', sortable: true, width: 150 },
+    
     {
       headerName: 'Date Opération', field: 'transactionDate', sortable: true, filter: true, width: 260,
       cellRenderer: (data: { value: string | number | Date; }) => {
-        return data.value ? (new Date(data.value)).toLocaleDateString('fr-FR') : '';
+        return data.value ? (new Date(data.value)).toLocaleString('fr-FR') : '';
       }
     },
     { headerName: 'Description', field: 'description', sortable: true, width: 300 },

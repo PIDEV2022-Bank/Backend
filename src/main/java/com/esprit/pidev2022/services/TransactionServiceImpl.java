@@ -39,6 +39,7 @@ public class TransactionServiceImpl implements TransactionService{
         DepositTransaction deposit = new DepositTransaction( new Date(),amount,account,
                 description);
         deposit.setMouvement("CREDIT");
+        deposit.setDescription("DEPOT");
         transactionRepo.save(deposit);
         //    account.getTransactions().add(deposit);
         account.setBalance(account.getBalance().add(new BigDecimal(amount)));
@@ -56,6 +57,7 @@ public class TransactionServiceImpl implements TransactionService{
             throw new BalanceNotEnoughException("Solde insuffisant");
         WithdrawalTransaction   withdrawal = new WithdrawalTransaction(
                 new Date(),amount,account, description);
+        withdrawal.setDescription("RETRAIT");
         withdrawal.setMouvement("DEBIT");
         transactionRepo.save(withdrawal);
         account.setBalance((account.getBalance().subtract(new BigDecimal(amount))));

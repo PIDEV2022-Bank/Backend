@@ -56,7 +56,7 @@ public class AccountController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<Account> updateForum(@RequestBody Account account) {
+    public ResponseEntity<Account> updateAccount( @RequestBody Account account) {
         Account updateAccount = accountService.updateAccount(account);
         return new ResponseEntity<>(updateAccount, HttpStatus.OK);
     }
@@ -69,7 +69,7 @@ public class AccountController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Account>> getAllForum() {
+    public ResponseEntity<List<Account>> getAllAccount() {
 
         List<Account> accounts = accountService.findAllAccount();
         return new ResponseEntity<>(accounts, HttpStatus.OK);

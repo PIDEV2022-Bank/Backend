@@ -7,5 +7,6 @@ export interface Transaction {
     amount: number;
     description: string;
     transactionDate: Date;
+    mouvement:String
 
 }

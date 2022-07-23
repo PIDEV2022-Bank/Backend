@@ -25,7 +25,8 @@ const routes: Routes = [
     children: [
       { path: 'addComplaint', component: ComplaintAddComponent },
       {path:'myComplaint',component: MyComlaintComponent},
-      { path: 'account', component: AccountComponent},]},
+     { path: 'account', component: AccountComponent},
+    ]},
   { path: 'admin', component: AdminComponent,
     children: [
       { path: 'complaint', component: ComplaintComponent },
